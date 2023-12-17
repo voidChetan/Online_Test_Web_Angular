@@ -9,6 +9,10 @@ import{ HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './pages/user/user.component';
 import { NewTestComponent } from './pages/new-test/new-test.component';
+import { NewQuestionComponent } from './pages/new-question/new-question.component';
+
+
+import { LayoutComponent } from './pages/layout/layout.component'; 
 
 @NgModule({
   declarations: [
@@ -16,13 +20,19 @@ import { NewTestComponent } from './pages/new-test/new-test.component';
     LoginComponent,
     CategoriesComponent,
     UserComponent,
-    NewTestComponent
+    NewTestComponent,
+    NewQuestionComponent,
+    LayoutComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
