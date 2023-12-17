@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header bg-primary text-white d-flex justify-content-between">
+                    <h4>Categories</h4>
+                    <button type="button" class="btn btn-outline-success text-white" (click)="bulkData()">Add</button>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Sr</th>
+                                <th>category name</th>
+                                <th>Parent Category Name</th>
+                                <th>Image URL</th>
+                                <th style="width: 20%;">Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cate of categoryArray ;let sr=index">
+                                <td>{{sr+1}}</td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="category" [(ngModel)]="cate.categoryName"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <div>
+                                        <select [(ngModel)]="cate.parentCategoryId" name="parent" class="form-control">
+                                            <option>Select</option>
+                                            <option [value]="list.categoryId" *ngFor="let list of parentCate">
+                                                {{list.categoryName}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" name="image" [(ngModel)]="cate.imageUrl" class="form-control">
+                                </td>
+                                <td>
+                                    <div class="text-center category_img">
+                                        <img [src]="cate.imageUrl" alt="cate.imageUrl">
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger text-white"
+                                        (click)="delete(cate.categoryId)">Delete</button>
+
+                                    
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer bg-light">
+                    <div>
+                        <button type="button" class="btn btn-outline-primary" (click)="save()">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

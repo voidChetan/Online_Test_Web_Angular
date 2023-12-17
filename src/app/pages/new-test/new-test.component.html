@@ -1,0 +1,160 @@
+<div class="container" *ngIf="!displayAlltest">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between">
+                    <h4>Tests</h4>
+                   <button type="button" class="btn btn-outline-success text-dark border-0" (click)="displayAlltest =!displayAlltest">All Tests</button>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header bg-light ">
+                                    <div>
+                                        <h4>New Test</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div>
+                                                <label for="">Test Name :</label>
+                                                <input type="text" name="name" [(ngModel)]="testObj.testName"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="my-2">
+                                                <label for="">Test Description :</label>
+                                                <textarea name="description" cols="5" rows="5"
+                                                    [(ngModel)]="testObj.description" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div>
+                                                <label for="">Test Duration :</label>
+                                                <input type="text" name="name" [(ngModel)]="testObj.duration"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="my-2">
+                                                <button type="button" class="btn btn-outline-primary"
+                                                    (click)="save()">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-header bg-light d-flex justify-content-between">
+                                    <h4>Test Questions</h4>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <select name="category" class="form-control" [(ngModel)]="categoryId" (change)="changeCategory()">
+                                                        <option value="select">Select</option>
+                                                        <option *ngFor="let cate of categoryArray" [value]="cate.categoryId">{{cate.categoryName}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <select name="question" class="form-control" [(ngModel)]="questionId">
+                                                        <option value="select">Select</option>
+                                                        <option *ngFor="let qlist of questionArray" [value]="qlist.questionId">
+                                                            {{qlist.questionName}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success " (click)="bulkAddData()">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sr</th>
+                                                        <th>Question</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor=" let list of testObj.quizTestQuestions;let sr=index">
+                                                        <td>{{sr+1}}</td>
+                                                        <td>
+                                                            <div >
+                                                                {{list.questionName}}
+                                                            </div>
+                                                           
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="displayAlltest">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary d-flex justify-content-between">
+                   <h4>Alltest</h4>
+                   <button type="button" class="btn btn-outline-success text-dark" (click)="displayAlltest =!displayAlltest">Add Test</button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Test Name</th>
+                                        <th>Test Description</th>
+                                        <th>Test Duration</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let test of TestArray; let sr=index">
+                                        <td>{{sr+1}}</td>
+                                        <td> {{test.testName}}</td>
+                                        <td> {{test.description}}</td>
+                                        <td> {{test.duration}}</td>
+                                        <td>
+                                          <button type="button" class="btn btn-outline-success me-2 text-dark" (click)="edit(test.testId)">Edit</button>
+                                           <button type="button" class="btn btn-outline-danger text-dark" (click)="deletetest(test.testId)">Delete</button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

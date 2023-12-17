@@ -1,0 +1,107 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header bg-primary text-white d-flex justify-content-between">
+                    <h4>Users</h4>
+                    <button type="button" class="btn btn-outline-success text-white" (click)="bulkData()">Add</button>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Sr</th>
+                                <th>full Name</th>
+                                <th>Mobile No</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th style="width: 10%;">Gender</th>
+                                <th>College Name</th>
+                                <th>Stream</th>
+                                <th>Code</th>
+                                <th >role</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of userArray ;let sr=index">
+                                <td>{{sr+1}}</td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="name" [(ngModel)]="user.fullName" placeholder="Full Name"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="mobno" [(ngModel)]="user.mobileNo" placeholder="Conatct number"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="emailid" [(ngModel)]="user.emailid" placeholder="Enter Email"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="password" [(ngModel)]="user.password" placeholder="Enter password"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="radio" name="{{sr}}gender" value="Male" [(ngModel)]="user.gender"><span>Male</span><br>
+                                        <input type="radio" name="{{sr}}gender" value="Female" [(ngModel)]="user.gender"><span>Female</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="collegeName" [(ngModel)]="user.collegeName" placeholder="Enter college Name"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="Stream" [(ngModel)]="user.stream" placeholder="Enter Stream"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="registrationCode" [(ngModel)]="user.registrationCode" placeholder="Enter Code"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="text" name="role" [(ngModel)]="user.role" placeholder="Enter role"
+                                            class="form-control">
+                                    </div>
+                                </td>
+                            
+                                <td>
+                                    <button type="button" class="btn btn-danger text-white"
+                                        (click)="delete(user.userId)">Delete</button>
+
+                                    
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer bg-light">
+                    <div>
+                        <button type="button" class="btn btn-outline-primary" (click)="save()">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
