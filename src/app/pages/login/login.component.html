@@ -1,133 +1,206 @@
 <div class="main">
   <div class="container-fluid">
-      <div class="row" style="padding-left: 20%;padding-top: 10%;">
-          <div class="col-sm-5 authfy-panel-left pt-5 " style="width:300px ; height: 400px;">
-              <div class="brand-col">
-                  <div class="headline">
-                      <div class="brand-logo">
-                          <img src="../../../../assets/img/glichlogo.svg"  style="    width: 100%;" alt="brand-logo">
+    <div class="row" style="padding-left: 20%;padding-top: 10%;">
+      <div class="col-sm-5 authfy-panel-left pt-5 " style="width:300px ; height: 400px;">
+        <div class="brand-col">
+          <div class="headline">
+            <div class="brand-logo">
+              <img src="../../../../assets/bg_img.jpeg" style="    width: 100%;" alt="brand-logo">
+            </div>
+            <p class="pt-2 text-center"> Project Management Tool</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 authfy-panel-right" style="background-color:white ; width: 535px;">
+        <div class="authfy-login">
+          <div class="authfy-panel panel-login text-center active">
+            <div class="authfy-heading pe-4">
+              <h3 class="auth-title">Login to your account</h3>
+              <p *ngIf="!showRegister">Don’t have an account? <a class="lnk-toggler" data-panel=".panel-signup"
+                  (click)="showRegister= !showRegister">Sign Up
+                  Free!</a>
+              </p>
+              <p *ngIf="showRegister">Already Have Account? <a class="lnk-toggler" data-panel=".panel-signup"
+                  (click)="showRegister= !showRegister">Login In</a>
+              </p>
+            </div>
+            <div class="row" *ngIf="!showRegister">
+              <div class="col-xs-12 col-sm-12">
+                <form name="loginForm" class="loginForm" action="#" method="POST" #form="ngForm">
+                  <div class="form-group">
+                    <input type="email" class="form-control email my-2" name="emailid" #email="ngModel" required
+                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" [(ngModel)]="loginObj.emailid"
+                      placeholder="Email address" style="width: 80%;">
+                    <div class="row">
+                      <div class="text-danger text-start mb-2" *ngIf="email.touched || isFormSubmited">
+                        <span *ngIf="email.errors?.['required']">This Is Required</span>
+                        <span *ngIf="email.errors?.['pattern']">Email Not Proper</span>
                       </div>
-                      <p class="pt-2 text-center"> Project Management Tool</p>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="pwdMask">
+                      <span class="d-flex">
+                        <input [type]="changetype?'password':'text'" class="form-control password" name="password"
+                          #password="ngModel" required [(ngModel)]="loginObj.password" placeholder="Password"
+                          style="width: 80%;">
+                        <span class="eyeicon mt-2" (click)="viewPassword()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
+                      </span>
+                    </div>
+                    <div class="row">
+                      <div class="text-danger text-start mb-2" *ngIf="password.touched || isFormSubmited">
+                        <span *ngIf="password.errors?.['required']">This Is Required</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row remember-row d-flex pt-4 me-5">
+                    <div class="col-xs-6 col-sm-6 remember-box">
+                      <label class="checkbox text-left">
+                        <input type="checkbox" value="remember-me">
+                        <span class="label-text">Remember me</span>
+                      </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                      <p class="forgotPwd">
+                        <a class="lnk-toggler" data-panel=".panel-forgot">Forgot
+                          password?</a>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block " type="submit" [disabled]="form.invalid"
+                      (click)="onLogin()" style="width: 80%;">
+                      <span class="spinner-grow spinner-grow-sm me-2" *ngIf="isApiCallInProgress"></span>
+                      Login with email
+                    </button>
 
                   </div>
+                </form>
               </div>
-          </div>
-          <div class="col-sm-7 authfy-panel-right" style="background-color:white ; width: 535px;">
-              <div class="authfy-login">
-                  <div class="authfy-panel panel-login text-center active">
-                      <div class="authfy-heading pe-4">
-                          <h3 class="auth-title">Login to your account</h3>
-                          <p *ngIf="!showRegister">Don’t have an account? <a class="lnk-toggler"
-                                  data-panel=".panel-signup" (click)="showRegister= !showRegister">Sign Up
-                                  Free!</a>
-                          </p>
-                          <p *ngIf="showRegister">Already Have Account? <a class="lnk-toggler"
-                                  data-panel=".panel-signup" (click)="showRegister= !showRegister">Login In</a>
-                          </p>
-                      </div>
-                      <div class="row" *ngIf="!showRegister">
-                          <div class="col-xs-12 col-sm-12">
-                              <form name="loginForm" class="loginForm" action="#" method="POST" #form="ngForm">
-                                  <div class="form-group">
-                                      <input type="email" class="form-control email my-2" name="userName"
-                                          #email="ngModel" required
-                                          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                          [(ngModel)]="loginObj.userName" placeholder="Email address"
-                                          style="width: 80%;">
-                                      <div class="row">
-                                          <div class="text-danger text-start mb-2"
-                                              *ngIf="email.touched || isFormSubmited">
-                                              <span *ngIf="email.errors?.['required']">This Is Required</span>
-                                              <span *ngIf="email.errors?.['pattern']">Email Not Proper</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <div class="pwdMask">
-                                          <span class="d-flex">
-                                              <input [type]="changetype?'password':'text'"
-                                                  class="form-control password" name="userPassword"
-                                                  #password="ngModel" required [(ngModel)]="loginObj.userPassword"
-                                                  placeholder="Password" style="width: 80%;">
-                                              <span class="eyeicon mt-2" (click)="viewPassword()"><i
-                                                      [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
-                                          </span>
-                                      </div>
-                                      <div class="row">
-                                          <div class="text-danger text-start mb-2"
-                                              *ngIf="password.touched || isFormSubmited">
-                                              <span *ngIf="password.errors?.['required']">This Is Required</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="row remember-row d-flex pt-4 me-5">
-                                      <div class="col-xs-6 col-sm-6 remember-box">
-                                          <label class="checkbox text-left">
-                                              <input type="checkbox" value="remember-me">
-                                              <span class="label-text">Remember me</span>
-                                          </label>
-                                      </div>
-                                      <div class="col-xs-6 col-sm-6">
-                                          <p class="forgotPwd">
-                                              <a class="lnk-toggler" data-panel=".panel-forgot">Forgot
-                                                  password?</a>
-                                          </p>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <button class="btn btn-lg btn-primary btn-block " type="submit"
-                                          [disabled]="form.invalid" (click)="onLogin()" style="width: 80%;">
-                                          <span class="spinner-grow spinner-grow-sm me-2"
-                                              *ngIf="isApiCallInProgress"></span>
-                                          Login with email
-                                      </button>
+            </div>
+            <div class="row" *ngIf="showRegister">
+              <div class="col-12">
+                <form #userform="ngForm">
 
-                                  </div>
-                              </form>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="email" name="email" class="form-control email my-2" placeholder="Enter Email"
+                          #email="ngModel" required style="width: 80%;"
+                          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" [(ngModel)]="usersObj.emailId"
+                          [class.is-invalid]="email.touched && email.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2" *ngIf="email.touched || isFormSubmited">
+                            <span *ngIf="email.errors?.['required']">This Is Required</span>
+                            <span *ngIf="email.errors?.['pattern']">Email Not Proper</span>
                           </div>
+                        </div>
                       </div>
-                      <div class="row" *ngIf="showRegister">
-                          <div class="col-12">
-                              <form #userform="ngForm">
-                                  <div class="form-group">
-                                      <input type="email" name="email" class="form-control email my-2"
-                                          placeholder="Enter Email" #email="ngModel" required style="width: 80%;"
-                                          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                          [(ngModel)]="usersObj.emailId"
-                                          [class.is-invalid]="email.touched && email.invalid">
-                                      <div class="row">
-                                          <div class="text-danger text-start mb-2"
-                                              *ngIf="email.touched || isFormSubmited">
-                                              <span *ngIf="email.errors?.['required']">This Is Required</span>
-                                              <span *ngIf="email.errors?.['pattern']">Email Not Proper</span>
-                                          </div>
-                                      </div>
-                                  </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="email" title="min 4 char max 10 chars" name="password"
+                          class="form-control email my-2" style="width: 80%;" placeholder="Enter password" required
+                          minlength="4" maxlength="10" #password="ngModel" [(ngModel)]="usersObj.password"
+                          [class.is-invalid]="password.touched && password.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2">
+                            <span class="text-danger" *ngIf="password.touched && password.invalid">Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                                  <div class="form-group">
-                                      <input type="email" title="min 4 char max 10 chars" name="password" class="form-control email my-2"
-                                          style="width: 80%;" placeholder="Enter password" required minlength="4"
-                                          maxlength="10" #password="ngModel" [(ngModel)]="usersObj.password"
-                                          [class.is-invalid]="password.touched && password.invalid">
-                                      <div class="row">
-                                          <div class="text-danger text-start mb-2">
-                                              <span class="text-danger"
-                                                  *ngIf="password.touched && password.invalid">Required</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <input type="text"   name="fullName" class="form-control email my-2"
-                                          style="width: 80%;" placeholder="Enter fullName" required   #fullName="ngModel" [(ngModel)]="usersObj.fullName"
-                                          [class.is-invalid]="fullName.touched && fullName.invalid">
-                                      <div class="row">
-                                          <div class="text-danger text-start mb-2">
-                                              <span class="text-danger"
-                                                  *ngIf="fullName.touched && fullName.invalid">Required</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <!-- <div class="form-group">
+
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" name="fullName" class="form-control email my-2" style="width: 80%;"
+                          placeholder="Enter fullName" required #fullName="ngModel" [(ngModel)]="usersObj.fullName"
+                          [class.is-invalid]="fullName.touched && fullName.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2">
+                            <span class="text-danger" *ngIf="fullName.touched && fullName.invalid">Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" name="mobileNo" class="form-control email my-2" style="width: 80%;"
+                          placeholder="Enter Mobile No" required #mobileNo="ngModel" [(ngModel)]="usersObj.mobileNo"
+                          [class.is-invalid]="mobileNo.touched && mobileNo.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2">
+                            <span class="text-danger" *ngIf="mobileNo.touched && mobileNo.invalid">Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" name="registrationCode" class="form-control email my-2" style="width: 80%;"
+                          placeholder="Enter Reg. Code" required #registrationCode="ngModel"
+                          [(ngModel)]="usersObj.registrationCode"
+                          [class.is-invalid]="registrationCode.touched && registrationCode.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2">
+                            <span class="text-danger"
+                              *ngIf="registrationCode.touched && registrationCode.invalid">Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" name="collegeName" class="form-control email my-2" style="width: 80%;"
+                          placeholder="Enter College Name" required #collegeName="ngModel"
+                          [(ngModel)]="usersObj.collegeName"
+                          [class.is-invalid]="collegeName.touched && collegeName.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2">
+                            <span class="text-danger" *ngIf="collegeName.touched && collegeName.invalid">Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" name="stream" class="form-control email my-2" style="width: 80%;"
+                          placeholder="Enter stream" required #stream="ngModel" [(ngModel)]="usersObj.stream"
+                          [class.is-invalid]="stream.touched && stream.invalid">
+                        <div class="row">
+                          <div class="text-danger text-start mb-2">
+                            <span class="text-danger" *ngIf="stream.touched && stream.invalid">Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-3">
+                            <input type="radio" name="gender" class=" email my-2 p-2" style="width: 80%;"
+                              [(ngModel)]="usersObj.gender">
+                          </div>
+                          <div class="col-3">
+                            <input type="radio" name="gender" class=" email my-2" style="width: 80%;"
+                              [(ngModel)]="usersObj.gender">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="form-group">
                                       <select name="role" id="" class="dropdown-toggle form-select"
                                           style="width: 80%;" [(ngModel)]="usersObj.role">
                                           <option value="" selected>select</option>
@@ -141,20 +214,20 @@
                                           </div>
                                       </div>
                                   </div> -->
-                                  <div class="form-group">
-                                      <button class="btn btn-lg btn-primary btn-block " type="submit"
-                                          [disabled]="userform.invalid" (click)="saveUser()" style="width: 80%;">
-                                          <span class="spinner-grow spinner-grow-sm me-2"
-                                              *ngIf="isApiCallInProgress"></span>
-                                          Register
-                                      </button>
-                                  </div>
-                              </form>
-                          </div>
-                      </div>
+                  <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block mb-2 " type="submit" [disabled]="userform.invalid"
+                      (click)="saveUser()" style="width: 80%;">
+                      <span class="spinner-grow spinner-grow-sm me-2" *ngIf="isApiCallInProgress"></span>
+                      Register
+                    </button>
                   </div>
+                </form>
               </div>
+            </div>
           </div>
+        </div>
       </div>
+
+    </div>
   </div>
 </div>

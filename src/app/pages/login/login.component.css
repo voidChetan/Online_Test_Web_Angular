@@ -1,5 +1,5 @@
 .main {
-  background-image: url(../../../../assets/img/bg-img.jpg);
+  background-image: url('/assets/bg_img.jpeg');
   height: 100vh;
 }
 
