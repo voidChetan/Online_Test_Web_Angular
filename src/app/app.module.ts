@@ -7,11 +7,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { NewQuestionComponent } from './pages/new-question/new-question.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutComponent } from './pages/layout/layout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NewQuestionComponent
+    NewQuestionComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
