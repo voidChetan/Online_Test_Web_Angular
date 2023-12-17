@@ -8,7 +8,8 @@ import { NewQuestionComponent } from './pages/new-question/new-question.componen
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './pages/layout/layout.component';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,10 @@ import { LayoutComponent } from './pages/layout/layout.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7b58a72e77cb04d30f2af6f5bfe8506f4955ec0b
   ],
   providers: [],
   bootstrap: [AppComponent]
