@@ -1,1 +1,166 @@
+<div class="row bg-light bg-gradient p-5">
+  <div *ngIf="!addquestion" class="col-12">
+    <div class="card">
+      <div class="card-header bg-dark">
+        <div class="row">
+          <div class="col-md-6 text-white fw-bold fs-4">Question</div>
+          <div class="col-md-6 text-end">
+            <button class="btn btn-sm btn-warning" (click)="addquestion= ! addquestion">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="table-active">
+            <tr>
+              <th>Sr No</th>
+              <th>Name</th>
+              <th>CodeSnipet Text</th>
+              <th>IsMultple Answer</th>
+              <th>IsCode Snipet</th>
 
+
+
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let question of  questionArray; let sr=index">
+              <td>{{sr+1}}</td>
+              <td>{{question.questionName}}</td>
+              <td>{{question.codeSnipetText}}</td>
+              <td>{{question.isMultpleAnswer}}</td>
+              <td>{{question.isCodeSnipet}}</td>
+
+              <td class="text-center">
+
+                <button class="btn btn-secondary btn-sm" (click)="onEdit(question.questionId)"
+               >
+                  Edit</button>
+                <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(question.questionId)">Delete</button>
+
+
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="addquestion" [ngClass]="addquestion|| option == true ? 'col-6' : 'col-12'">
+    <!-- <div class="row"> -->
+    <form>
+      <div class="card">
+        <div class="card-header bg-dark">
+          <div class="row">
+            <div class="col-md-6 fs-4 text-light fw-bold">New Advance</div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-sm btn-danger" (click)=" addquestion= ! addquestion">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Name</label>
+                <input type="text" name="questionName" [(ngModel)]="questionObj.questionName" class="form-control"
+                  placeholder="questionName">
+              </div>
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">category Name</label>
+                <select name="categoryId" class="form-control" [(ngModel)]="questionObj.categoryId">
+
+                  <option *ngFor="let items of  catagoryArray" [value]="items.categoryId">
+                    {{items.categoryName}}
+                  </option>
+                  <!-- <option value=""[(ngModel)]="clientObj.clientName">{{clientObj.clientName}}</option> -->
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Multple Answer</label>
+                <input type="checkbox" [(ngModel)]="questionObj.isMultpleAnswer" name="isMultpleAnswer">
+              </div>
+
+              <div class="col-6 ">
+                <label for="" class="text-secondary  fw-bold p-2" >Code Snipet</label>
+                <input type="checkbox" [(ngModel)]="questionObj.isCodeSnipet" name="isCodeSnipet">
+              </div>
+
+
+            </div>
+            <div class="col-6">
+              <label for="" class="text-secondary  fw-bold p-2" *ngIf="questionObj.isCodeSnipet==true">code SnipetText</label>
+              <input type="text" name="codeSnipetText" [(ngModel)]="questionObj.codeSnipetText" class="form-control">
+
+            </div>
+            <div class="row text-centre p-2">
+              <div class="col-6">
+                <button class="btn btn-sm btn-danger">Reset</button>
+              </div>
+
+              <div class="col-6">
+                <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()" >
+
+                  <div class="spinner-border spinner-border-sm"></div>Save
+                </button>
+                <button class="btn btn-sm btn-warning" *ngIf=" questionObj.questionId!==0" (click)="onUpdate()"
+                               >
+                                <div class="spinner-border spinner-border-sm"></div>Update
+                            </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-6" *ngIf="option || questionObj.isMultpleAnswer == true">
+    <div class="card">
+      <div class="card-header bg-dark">
+        <div class="row">
+          <div class="col-md-6 text-white">Option</div>
+          <div class="col-md-6 text-end">
+            <button class="btn btn-sm btn-warning" (click)="option!=option">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="table-active">
+            <tr>
+
+
+              <th> <input type="text" class="form-control" [(ngModel)]="optionObj.optionText"> </th>
+              <th> <input type="checkbox" [(ngModel)]="optionObj.isCodeSnipet">Code Sinpet</th>
+              <th> <input type="checkbox" [(ngModel)]="optionObj.isCorrect">Correct </th>
+
+
+              <th><button class=" btn btn-sm btn-danger" (click)="addQuize()">Add</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let option of   questionObj.quizQuestionAnswers">
+              <td>{{option.optionText}}</td>
+              <td>{{option.isCodeSnipet}}</td>
+              <td>{{option.isCorrect}}</td>
+
+
+
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

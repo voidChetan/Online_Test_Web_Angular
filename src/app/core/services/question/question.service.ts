@@ -21,7 +21,14 @@ export class QuestionService {
   }
 
   deleteQuestionById(id:number){
-    return this.http.delete("https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteQuestionById?id="+IDBVersionChangeEvent)
+    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteQuestionById?id="+id)
+
+  }
+  getAllCatagory(){
+    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllCategories");
+  }
+  getQuestionById(id:number){
+    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/getQuestionId?questionId="+id);
 
   }
 }
