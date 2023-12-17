@@ -12,7 +12,7 @@ export class NewQuestionComponent {
   addquestion: boolean = false;
   editQuestion: boolean = false;
   option: boolean = false;
-
+  edit:boolean=false;
   questionObj: any = {
     questionId: 0,
     categoryId: 0,
@@ -70,7 +70,7 @@ export class NewQuestionComponent {
   onUpdate(){
     this.questionSer.updateQuestion(this.questionObj).subscribe((res:any)=>{
       if(res.result){
-        alert("Question Added");
+        alert("Question Updated");
         this.loadQuestion();
       }
       else{
@@ -79,10 +79,8 @@ export class NewQuestionComponent {
     })
   }
 
-  onEdit(id:number){
-    this.questionSer.getQuestionById(id).subscribe((res:any)=>{
-      this.questionArray=res.data;
-    })
+  onEdit(item:any){
+    this.questionObj=item;
   }
 
   onDelete(id:number){
