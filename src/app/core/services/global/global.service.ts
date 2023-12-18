@@ -8,12 +8,24 @@ import { environment } from 'src/environments/environment.development';
 })
 export class GlobalService {
 
-  api:string=environment.apiURL
-  constructor(private http:HttpClient) {
+  apiStartPoint:string=environment.apiURL;
 
-   
-   }
-   get(method:string){
-    this.http.get(this.api+method)
+  constructor(private http:HttpClient) {}
+
+   get(method:string):Observable<any>{
+    return this.http.get(this.apiStartPoint + method);
   }
+
+  post(method:string,object:any):Observable<any>{
+    return this.post(this.apiStartPoint + method , object);
+  }
+
+  put(method:string,object:any):Observable<any>{
+    return this.put(this.apiStartPoint + method,object);
+  }
+
+  delete(method:string):Observable<any>{
+    return this.delete(this.apiStartPoint + method);
+  }
+
 }
