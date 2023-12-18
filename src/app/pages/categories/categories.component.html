@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-12">
             <div class="card mt-2">
-                <div class="card-header bg-primary text-white d-flex justify-content-between">
-                    <h4>Categories</h4>
-                    <button type="button" class="btn btn-outline-success text-white" (click)="bulkData()">Add</button>
+                <div class="card-header bg-info text-dark d-flex justify-content-between">
+                    <h4 class="">Categories</h4>
+                    <button type="button" class="btn border-0 text-dark" (click)="bulkData()"><i class="fa-solid fa-plus fs-5" style="color: black;"></i></button>
 
                 </div>
                 <div class="card-body">
@@ -32,7 +32,7 @@
 
                                     <div>
                                         <select [(ngModel)]="cate.parentCategoryId" name="parent" class="form-control">
-                                            <option>Select</option>
+                                            <option value="select Category">Select</option>
                                             <option [value]="list.categoryId" *ngFor="let list of parentCate">
                                                 {{list.categoryName}}</option>
                                         </select>
@@ -47,8 +47,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger text-white"
-                                        (click)="delete(cate.categoryId)">Delete</button>
+                                    <button type="button" class="btn border-0 "
+                                        (click)="delete(cate.categoryId)"><i class="fa-solid fa-trash-can fs-5" style="color: #f93434;"></i></button>
 
                                     
                                 </td>
@@ -57,9 +57,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer bg-light">
+                <div class="card-footer bg-light text-center">
                     <div>
-                        <button type="button" class="btn btn-outline-primary" (click)="save()">Save</button>
+                        <button type="button" class="btn btn-outline-primary" (click)="save()"><i class="fa-solid fa-floppy-disk me-2" style="color: black;"></i>Save</button>
 
                     </div>
                 </div>

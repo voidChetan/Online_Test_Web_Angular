@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!displayAlltest">
+<div class="container mt-5" *ngIf="!displayAlltest">
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -42,7 +42,7 @@
                                         <div class="col-12">
                                             <div class="my-2">
                                                 <button type="button" class="btn btn-outline-primary"
-                                                    (click)="save()">Save</button>
+                                                    (click)="save()"><i class="fa-solid fa-floppy-disk me-1" style="color: black;"></i>Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -62,13 +62,13 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <select name="category" class="form-control" [(ngModel)]="categoryId" (change)="changeCategory()">
-                                                        <option value="select">Select</option>
+                                                        <option value="select">Select Langaugae</option>
                                                         <option *ngFor="let cate of categoryArray" [value]="cate.categoryId">{{cate.categoryName}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-4">
                                                     <select name="question" class="form-control" [(ngModel)]="questionId">
-                                                        <option value="select">Select</option>
+                                                        <option value="select">Select Questions</option>
                                                         <option *ngFor="let qlist of questionArray" [value]="qlist.questionId">
                                                             {{qlist.questionName}}</option>
                                                     </select>
@@ -76,7 +76,7 @@
                                                 <div class="col-4">
                                                     <div>
                                                         <button type="button"
-                                                            class="btn btn-outline-success " (click)="bulkAddData()">Add</button>
+                                                            class="btn border-0 " (click)="bulkAddData()"><i class="fa-solid fa-plus me-1" style="color: black;"></i> Add questions</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,13 +116,13 @@
     </div>
 </div>
 
-<div class="container" *ngIf="displayAlltest">
+<div class="container mt-5" *ngIf="displayAlltest">
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header bg-primary d-flex justify-content-between">
-                   <h4>Alltest</h4>
-                   <button type="button" class="btn btn-outline-success text-dark" (click)="displayAlltest =!displayAlltest">Add Test</button>
+                <div class="card-header bg-info d-flex justify-content-between">
+                   <h4 class="text-dark">All Test</h4>
+                   <button type="button" class="btn  border-0" (click)="displayAlltest =!displayAlltest"><i class="fa-solid fa-plus fs-5" style="color: black"></i></button>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -144,8 +144,8 @@
                                         <td> {{test.description}}</td>
                                         <td> {{test.duration}}</td>
                                         <td>
-                                          <button type="button" class="btn btn-outline-success me-2 text-dark" (click)="edit(test.testId)">Edit</button>
-                                           <button type="button" class="btn btn-outline-danger text-dark" (click)="deletetest(test.testId)">Delete</button>
+                                          <button type="button" class="btn  me-1 border-0 text-dark" (click)="edit(test.testId)"><i class="fa-solid fa-pen-to-square" style="color: #0b27f4;"></i></button>
+                                           <button type="button" class="btn border-0 text-dark" (click)="deletetest(test.testId)"><i class="fa-solid fa-trash-can" style="color: red;"></i></button>
 
                                         </td>
                                     </tr>

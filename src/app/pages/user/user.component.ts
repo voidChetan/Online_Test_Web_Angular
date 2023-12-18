@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class UserComponent {
 
+  isEdit:boolean=false;
   userObj:any={
     userId: 0,
     emailid: "",
@@ -18,7 +19,9 @@ export class UserComponent {
     registrationCode: "",
     collegeName: "",
     stream: "",
-    role: ""
+    role: "",
+   
+   
   }
 
   userArray:any[]=[];
@@ -45,6 +48,7 @@ export class UserComponent {
       collegeName: '',
       stream: '',
       role: '',
+      isEdit:true
     };
     this.userArray.unshift(obj);
   }
@@ -58,6 +62,13 @@ export class UserComponent {
         }
       });
   }
+
+  edit(user:any){
+    user.isEdit=true;
+   
+  }
+
+  update(){}
 
   delete(id: number) {
     const isConfirm = confirm('Are You Sure Want to Delete ?');
