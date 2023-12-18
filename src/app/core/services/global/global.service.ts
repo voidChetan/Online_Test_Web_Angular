@@ -17,15 +17,15 @@ export class GlobalService {
   }
 
   post(method:string,object:any):Observable<any>{
-    return this.post(this.apiStartPoint + method , object);
+    return this.http.post(this.apiStartPoint + method , object);
   }
 
   put(method:string,object:any):Observable<any>{
-    return this.put(this.apiStartPoint + method,object);
+    return this.http.put(this.apiStartPoint + method,object);
   }
 
   delete(method:string):Observable<any>{
-    return this.delete(this.apiStartPoint + method);
+    return this.http.delete(this.apiStartPoint + method);
   }
 
 }

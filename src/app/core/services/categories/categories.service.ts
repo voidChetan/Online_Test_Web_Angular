@@ -11,4 +11,12 @@ export class CategoriesService {
   getAllCategory(){
     return this.globalSrv.get(categoryConst.category.GetAllCategories);
   }
+
+  addBilkCategory(obj:any){
+    return this.globalSrv.post(categoryConst.category.AddBulkCategories,obj);
+  }
+
+  deleteById(id:number){
+    return this.globalSrv.delete(categoryConst.category.DeleteCategoryById+id)
+  }
 }

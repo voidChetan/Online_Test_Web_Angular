@@ -75,9 +75,7 @@ export class NewTestComponent implements OnInit {
   }
 
   bulkAddData() {
-    
     this.quizQuestions.questionId=this.questionId;
-
     const filter=this.questionArray.find(m=> m.questionId ==  this.quizQuestions.questionId)
 
     const obj = JSON.stringify(filter);
@@ -90,7 +88,7 @@ export class NewTestComponent implements OnInit {
     };
     
     this.testObj.quizTestQuestions.push(questionobj);
-    console.log(parse)
+   
    
   }
 
