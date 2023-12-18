@@ -9,19 +9,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
         <li class="nav-item">
-          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="user">User</a>
+          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="/user">User</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Tests</a>
+          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="new-test">new-test</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Assigned Test</a>
+          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="new-question">new-question</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Users</a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Categories</a>
+          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink ="category">Categories</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -46,3 +46,5 @@
     </div>
   </div>
 </nav>
+
+<router-outlet></router-outlet>
