@@ -8,6 +8,7 @@ import { AssignedTestService } from 'src/app/core/services/user/assigned-test.se
   styleUrls: ['./assigned-test.component.css']
 })
 export class AssignedTestComponent {
+  isEdit:boolean=false;
   testId:number=0;
   registrationCode:number=0;
   isSidePannelOpen: boolean = true;
@@ -16,6 +17,7 @@ export class AssignedTestComponent {
   assignTestList: any[] = [];
   localData: any;
   TestArray:any[]=[];
+
   userArray:any[]=[];
   assignTestObj:any={
 
@@ -47,12 +49,51 @@ export class AssignedTestComponent {
       this.assignTestList=res.data;
     })
   }
-  onEdit(id:number){
-    this.assignSrv.getAllAssignedTestByRegCode(this.assignTestObj.registrationCode).subscribe((res:any)=>{
-      this.assignTestObj = res.data;
+  bulkAssignTestData(){
+   const obj={
+    "registrationCode": "",
+      "testId": 0,
+      "isEdit":true
+    };
+    this.assignTestList.unshift(obj);
+  }
+  assignTest(){
+    this.assignSrv.assignedTest(this.assignTestObj).subscribe((res:any)=>{
+      if (res.result) {
+        alert(res.message);
+       this. getAllTest()
+      } else {
+        alert(res.message);
+      }
     })
   }
-  onDelete(id:number){}
+  onSave(){
+    this.assignSrv.bulkUpdateTest(this.assignTestList).subscribe((res:any)=>{
+      if (res.result) {
+        alert(res.message);
+       this. getAllTest()
+      } else {
+        alert(res.message);
+      }
+    })
+  }
+  update(){}
+    onEdit(test:any){
+    // this.assignSrv.getAllAssignedTestByRegCode(this.assignTestObj.registrationCode).subscribe((res:any)=>{
+    //   this.assignTestObj = res.data;
+   // })
+    test.isEdit=true;
+  }
+  onDelete(id:number){
+   this.assignSrv.deleteAssignedTestBytestId(id).subscribe((res:any)=>{
+    if (res.result) {
+      alert(res.message);
+     this. getAllTest()
+    } else {
+      alert(res.message);
+    }
+   })
+  }
   onReset(){
     this.assignTestObj={
       "registrationCode": "",
