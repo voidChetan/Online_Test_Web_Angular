@@ -1,34 +1,39 @@
+import { environment } from './../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalService } from '../global/global.service';
+import { Observable } from 'rxjs';
+import { questionConst } from '../../constant/questionConstant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
+  apiStartPoint: String = environment.apiURL;
 
-  constructor(private http:HttpClient) { }
+  constructor(private global:GlobalService) { }
 
-  getAllQuestion(){
-    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllQuestions");
+  getAllQuestion(): Observable<any>{
+    return this.global.get(questionConst.question.GetAllQuestions);
   }
 
-  newQuestion(obj:any){
-    return this.http.post("https://freeapi.miniprojectideas.com/api/OnlineTest/createNewQuestion",obj);
+  newQuestion(obj:any): Observable<any>{
+    return this.global.post(questionConst.question.createNewQuestion,obj);
   }
 
-  updateQuestion(obj:any){
-    return this.http.put("https://freeapi.miniprojectideas.com/api/OnlineTest/UpdateQuestion",obj);
+  updateQuestion(obj:any): Observable<any>{
+    return this.global.put(questionConst.question.UpdateQuestion,obj);
   }
 
-  deleteQuestionById(id:number){
-    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteQuestionById?id="+id)
+  deleteQuestionById(id:number): Observable<any>{
+    return this.global.get(questionConst.question.getQuestionById+id)
 
   }
-  getAllCatagory(){
-    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllCategories");
+  getAllCatagory(): Observable<any>{
+    return this.global.get(questionConst.question.getAllCatagory);
   }
-  getQuestionById(id:number){
-    return this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/getQuestionId?questionId="+id);
+  getQuestionById(id:number): Observable<any>{
+    return this.global.get(questionConst.question.getQuestionById+id);
 
   }
 }

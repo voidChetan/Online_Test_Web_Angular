@@ -43,9 +43,9 @@ export class NewQuestionComponent {
   }
 
   loadCatagory() {
-    this.questionSer.getAllCatagory().subscribe((res: any) => {
-      this.catagoryArray = res.data;
-    });
+   this.questionSer.getAllQuestion().subscribe((res:any)=>{
+    this.catagoryArray=res.data;
+   })
   }
 
   addQuize() {
@@ -58,13 +58,21 @@ export class NewQuestionComponent {
   onSave() {
     this.questionSer.newQuestion(this.questionObj).subscribe((res:any)=>{
       if(res.result){
-        alert("Question Added");
-        this.loadQuestion();
+        alert("question Added");
       }
       else{
         alert(res.message);
       }
     })
+    // this.questionSer.newQuestion(this.questionObj).subscribe((res:any)=>{
+    //   if(res.result){
+    //     alert("Question Added");
+    //     this.loadQuestion();
+    //   }
+    //   else{
+    //     alert(res.message);
+    //   }
+    // })
   }
 
   onUpdate(){
