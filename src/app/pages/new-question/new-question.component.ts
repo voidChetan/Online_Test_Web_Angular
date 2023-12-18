@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
+import { ConfirmationService,MessageService } from 'primeng/api';
+
 import { QuestionService } from 'src/app/core/services/question/question.service';
+
 
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
   styleUrls: ['./new-question.component.css'],
+  providers: [MessageService]
 })
 export class NewQuestionComponent {
   questionArray: any[] = [];
@@ -31,7 +35,7 @@ export class NewQuestionComponent {
     isCorrect: false,
   };
 
-  constructor(private questionSer: QuestionService) {
+  constructor(private questionSer: QuestionService,private msgSer:MessageService) {
     this.loadQuestion();
     this.loadCatagory();
   }
@@ -58,7 +62,9 @@ export class NewQuestionComponent {
   onSave() {
     this.questionSer.newQuestion(this.questionObj).subscribe((res:any)=>{
       if(res.result){
-        alert("question Added");
+        this.msgSer.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+        // this.msgSer.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+        // alert("question Added");
       }
       else{
         alert(res.message);

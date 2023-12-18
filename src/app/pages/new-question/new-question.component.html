@@ -79,6 +79,7 @@
                 </div>
                 <div class="col-6">
                   <label for="" class="text-secondary  fw-bold p-2">category Name</label>
+
                   <select name="categoryId" class="form-control" [(ngModel)]="questionObj.categoryId">
 
                     <option *ngFor="let items of  catagoryArray" [value]="items.categoryId">
@@ -110,10 +111,17 @@
                 </div>
 
                 <div class="col-6">
-                  <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()">
+                  <div class="card">
+                    <p-toast></p-toast>
+                    <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()">
+
+                      <div class="spinner-border spinner-border-sm"></div>Save
+                    </button>
+                </div>
+                  <!-- <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()">
 
                     <div class="spinner-border spinner-border-sm"></div>Save
-                  </button>
+                  </button> -->
                   <button class="btn btn-sm btn-warning" *ngIf=" questionObj.questionId!==0" (click)="onUpdate()">
                     <div class="spinner-border spinner-border-sm"></div>Update
                   </button>
