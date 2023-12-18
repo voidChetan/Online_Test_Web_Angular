@@ -1,0 +1,177 @@
+<div class="container-fluid">
+  <div class="row pt-5">
+    <div [ngClass]="isSidePannelOpen?'col-12':'col-12'">
+      <div class="card">
+        <div class="card-header bg-secondary text-end d-flex justify-content-between">
+          <p class="text-white">All User</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            Add
+          </button>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Sr No</th>
+                <th>Email-Id</th>
+                <th>fullName</th>
+                <th>Test Name</th>
+                <th>Assigned Date</th>
+                <th>Completede Date</th>
+                <th>Completed</th>
+                <th>Started</th>
+                <th>Started Date</th>
+                <th>Correct Ans</th>
+                <th>Action</th>
+
+              </tr>
+            </thead>
+            <tbody *ngIf="isLoader==false">
+              <tr *ngFor="let test of assignTestList;let sr=index">
+                <td>{{sr+1}}</td>
+                <td>{{test.emailid}}</td>
+                <td>{{test.fullName}}</td>
+                <td>{{test.testName}}</td>
+                <td>{{test.assignedDate|date:'dd-MM-yy'}}</td>
+                <td>{{test.completedeDate|date:'dd-MM-yy'}}</td>
+                <td>{{test.isCompleted}}</td>
+                <td>{{test.isStarted}}</td>
+                <td>{{test.startedDate|date:'dd-MM-yy'}}</td>
+                <td>{{test.totalCorrectAnswers}}</td>
+                <td class="d-flex">
+                  <button class="btn btn-warning btn-sm  ms-2 mt-2" (click)="onEdit(test.userId)">Edit </button>
+                  <button class="btn btn-danger btn-sm ms-2 mt-2" (click)="onDelete(test.userId)">Delete </button>
+
+                </td>
+
+              </tr>
+            </tbody>
+            <tbody *ngIf="isLoader==true">
+              <tr>
+                <td colspan="6" class="text-center">
+                  <div class="spinner-grow text-muted"></div>
+                  <div class="spinner-grow text-primary"></div>
+                  <div class="spinner-grow text-success"></div>
+                  <div class="spinner-grow text-info"></div>
+                  <div class="spinner-grow text-warning"></div>
+                  <div class="spinner-grow text-danger"></div>
+                  <div class="spinner-grow text-secondary"></div>
+                  <div class="spinner-grow text-dark"></div>
+                  <div class="spinner-grow text-light"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="col-4" *ngIf="isSidePannelOpen">
+      <div class="card">
+        <div class="card-header bg-secondary text-end">
+          <button class="btn btn-warning" (click)="closePannel()">Close</button>
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-6">
+              <label for=""> Registration Code</label>
+              <select class="form-select" name="registrationCode" [(ngModel)]="registrationCode">
+                <option value="select">Select</option>
+                <option *ngFor="let reg of userArray" [value]="reg.registrationCode"> {{reg.registrationCode}} </option>
+              </select>
+
+            </div>
+            <div class="col-6">
+              <label for=""> Test</label>
+              <option value="select">Select</option>
+
+              <select class="form-select" name="testId" [(ngModel)]="testId">
+                <option *ngFor="let test of TestArray" [value]="test.testId">{{test.testName}}</option>
+              </select>
+
+            </div>
+          </div>
+
+
+
+           <div class="row mt-3">
+            <div class="col-6">
+              <button class="btn btn-danger" (click)="onReset()">Reset</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-success ms-4" *ngIf="assignTestObj.userId ==0" (click)="addUser()">Save <span
+                  class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
+              <button class="btn btn-primary ms-4" *ngIf="assignTestObj.userId !==0" (click)="updateUser()">Update <span
+                  class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <!-- Button to Open the Modal -->
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Assigned Test</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-6">
+              <label for=""> Registration Code</label>
+              <select class="form-select" name="registrationCode" [(ngModel)]="registrationCode">
+                <option value="select">Select</option>
+                <option *ngFor="let reg of userArray" [value]="reg.registrationCode"> {{reg.registrationCode}} </option>
+              </select>
+
+            </div>
+            <div class="col-6">
+              <label for=""> Test</label>
+              <option value="select">Select</option>
+
+              <select class="form-select" name="testId" [(ngModel)]="testId">
+                <option *ngFor="let test of TestArray" [value]="test.testId">{{test.testName}}</option>
+              </select>
+
+            </div>
+          </div>
+
+
+
+          <!-- <div class="row mt-3">
+            <div class="col-6">
+              <button class="btn btn-danger" (click)="onReset()">Reset</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-success ms-4" *ngIf="assignTestObj.userId ==0" (click)="addUser()">Save <span
+                  class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
+              <button class="btn btn-primary ms-4" *ngIf="assignTestObj.userId !==0" (click)="updateUser()">Update <span
+                  class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
+
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

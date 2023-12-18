@@ -6,6 +6,7 @@ import { UserComponent } from './pages/user/user.component';
 import { NewTestComponent } from './pages/new-test/new-test.component';
 import { NewQuestionComponent } from './pages/new-question/new-question.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path:'category',
         component:CategoriesComponent
+      },
+      {
+        path:'assign-test',
+        component:AssignedTestComponent
       }
     ],
   },
