@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-test.component.css'],
 })
 export class NewTestComponent implements OnInit {
+
+ 
   categoryId: number = 0;
   questionId: number = 0;
 
@@ -35,6 +37,8 @@ export class NewTestComponent implements OnInit {
     this.getAllTest();
     this.getAllCategory();
   }
+
+ 
   getAllTest() {
     this.http
       .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
