@@ -16,6 +16,7 @@ import { MessagesModule } from 'primeng/messages';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
+import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AssignedTestComponent } from './pages/assigned-test/assigned-test.compo
     NewQuestionComponent,
     LayoutComponent,
     AssignedTestComponent,
+    QueInterviewComponent,
 
   ],
   imports: [

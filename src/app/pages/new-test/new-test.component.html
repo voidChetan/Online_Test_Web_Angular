@@ -140,7 +140,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let test of TestArray; let sr=index">
+                                    <tr *ngFor="let test of filteredTestArray; let sr=index">
                                         <td>{{sr+1}}</td>
                                         <td> {{test.testName}}</td>
                                         <td> {{test.description}}</td>

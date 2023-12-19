@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
   selector: 'app-new-test',
@@ -30,10 +31,29 @@ export class NewTestComponent implements OnInit {
 
   TestArray: any[] = [];
   questionArray: any[] = [];
-
+  filteredTestArray:any[]=[];
   categoryArray: any[] = [];
 
-  constructor(private http: HttpClient,private msgSrv:MessageService) {}
+  constructor(private http: HttpClient,private msgSrv:MessageService,private searchSrv:SearchService) {
+    this.searchSrv.searchText.subscribe((res:any)=>{
+      this.filteredTestArray=this.TestArray.filter((param:any)=>{
+        let search = res;
+        let value = Object.values(param);
+        let flag = false;
+        value.forEach((val:any) => {
+         if(val !== null && val !==undefined && val.toString().toLowerCase().indexOf(search) > -1){
+          flag =true;
+          return;
+         }
+        });
+      if(flag){
+        return param;
+      }
+        
+      });
+    })
+   
+  }
 
   ngOnInit(): void {
     this.getAllTest();
@@ -60,6 +80,7 @@ export class NewTestComponent implements OnInit {
       .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
       .subscribe((res: any) => {
         this.TestArray = res.data;
+        this.filteredTestArray=res.data;
       });
   }
 
@@ -124,7 +145,8 @@ export class NewTestComponent implements OnInit {
           this.reset();
           this.getAllTest();
         } else {
-          alert(res.message);
+          this.msgSrv.add({ severity: 'error', summary: 'Error', detail: res.message });
+          // alert(res.message);
         }
       });
   }
