@@ -7,6 +7,7 @@ import { NewTestComponent } from './pages/new-test/new-test.component';
 import { NewQuestionComponent } from './pages/new-question/new-question.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
+import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path:'assign-test',
         component:AssignedTestComponent
+      },
+      {
+        path:'add-Question',
+        component:QueInterviewComponent
       }
     ],
   },
