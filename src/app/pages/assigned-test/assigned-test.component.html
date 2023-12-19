@@ -4,7 +4,8 @@
       <div class="card">
         <div class="card-header bg-secondary text-end ">
 
-          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#myModal">
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" (click)="openmodal()"
+            data-bs-target="#myModal">
             Add
           </button>
 
@@ -143,10 +144,12 @@
         <div class="card-footer bg-light">
           <div>
 
-              <button type="button"class="btn btn-outline-primary"   (click)="onSave()">Save / Update</button>
+            <!-- <p-toast></p-toast>
+            <button type="button" pButton pRipple (click)="showSuccess()" label="Success" class="p-button-success"></button> -->
+            <button type="button" class="btn btn-outline-primary" (click)="onSave()">Save / Update</button>
 
           </div>
-      </div>
+        </div>
       </div>
 
     </div>
@@ -164,7 +167,7 @@
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Assigned Test</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closemodal()"></button>
           </div>
 
           <!-- Modal body -->
@@ -174,12 +177,7 @@
               <div class="row">
                 <div class="col-6">
                   <label for=""> Registration Code</label>
-                  <select class="form-select" name="registrationCode" [(ngModel)]="registrationCode">
-                    <option value="select">Select</option>
-                    <option *ngFor="let reg of userArray" [value]="reg.registrationCode"> {{reg.registrationCode}}
-                    </option>
-                  </select>
-
+                  <input type="text" class="form-control" name="registrationCode" [(ngModel)]="registrationCode">
                 </div>
                 <div class="col-6">
                   <label for=""> Test</label>
@@ -190,10 +188,6 @@
 
                 </div>
               </div>
-
-
-
-
             </div>
           </div>
 
@@ -204,14 +198,13 @@
                 <button class="btn btn-danger" (click)="onReset()">Reset</button>
               </div>
               <div class="col-6">
-                <button class="btn btn-success ms-4"  (click)="assignTest()">Save
-                  <span class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
-                <button class="btn btn-primary ms-4"  (click)="update()">Update
+                <!-- <p-toast></p-toast> -->
+                <!-- <button type="button" pButton pRipple (click)="showSuccess()"  (click)="assignTest()" label="Success" class="p-button-success">Save</button> -->
+                <button class="btn btn-success ms-4" (click)="assignTest()" >Save
                   <span class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
 
               </div>
             </div>
-            <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> -->
           </div>
 
         </div>

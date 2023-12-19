@@ -44,7 +44,7 @@ import { QueInterviewComponent } from './pages/que-interview/que-interview.compo
 
 
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
