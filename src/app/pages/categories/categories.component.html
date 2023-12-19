@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let cate of categoryArray ;let sr=index">
+                            <tr *ngFor="let cate of filterCatagoryArray ;let sr=index">
                                 <td>{{sr+1}}</td>
                                 <td>
                                     <div>
@@ -50,7 +50,7 @@
                                     <button type="button" class="btn border-0 "
                                         (click)="delete(cate.categoryId)"><i class="fa-solid fa-trash-can fs-5" style="color: #f93434;"></i></button>
 
-                                    
+
                                 </td>
 
                             </tr>

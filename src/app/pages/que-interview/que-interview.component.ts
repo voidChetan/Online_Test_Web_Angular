@@ -10,7 +10,7 @@ export class QueInterviewComponent implements OnInit {
 
   languageId:string='';
   topicId:string='';
-  
+
   addQue:any = {
     questionId: 0,
     languageTopicId: 0,
