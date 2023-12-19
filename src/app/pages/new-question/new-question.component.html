@@ -1,12 +1,12 @@
-<div class="row bg-light bg-gradient p-5 border-0">
+<div class="row bg-light bg-gradient p-5 border-0 mt-5" >
   <div *ngIf="!addquestion" class="col-12">
     <div class="card">
-      <div class="card-header bg-primary">
+      <div class="card-header bg-info">
         <div class="row">
           <div class="col-md-6 text-white fw-bold fs-4">Question</div>
           <div class="col-md-6 text-end">
-            <button class="btn btn-sm btn-warning" (click)="addquestion= ! addquestion">
-              Add
+            <button type="button" class="btn  btn-dark  border-0" (click)="addquestion= ! addquestion">
+              <i class="fa-solid fa-plus" style="color: white;"></i>
             </button>
           </div>
         </div>
@@ -36,10 +36,11 @@
 
               <td class="text-center">
 
-                <button class="btn btn-secondary btn-sm" (click)="onEdit(question)"
-                  (click)="addquestion= ! addquestion">
-                  Edit</button>
-                <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(question.questionId)">Delete</button>
+                <button class="btn  border-0 " (click)="onEdit(question)"
+                  (click)="addquestion= ! addquestion"><i class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i>
+             </button>
+                <button class="btn border-0 mx-2" (click)="onDelete(question.questionId)"><i class="fa-solid fa-trash-can fs-6" style="color: red;"></i>
+                  </button>
 
 
               </td>
@@ -55,9 +56,9 @@
   <div *ngIf="addquestion" [ngClass]="addquestion|| option == true ? 'col-12' : 'col-12'">
     <!-- <div class="row"> -->
     <div class="card">
-      <div class="card-header bg-primary">
+      <div class="card-header  bg-info">
         <div class="row">
-          <div class="col-md-6 fs-4 text-light fw-bold">New Advance</div>
+          <div class="col-md-6 fs-4 text-light fw-bold">New Question</div>
           <div class="col-md-6 text-end">
             <button class="btn btn-sm btn-danger" (click)=" addquestion= ! addquestion">
               Close
@@ -111,13 +112,13 @@
                 </div>
 
                 <div class="col-6">
-                  <div class="card">
-                    <p-toast></p-toast>
-                    <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()">
 
-                      <div class="spinner-border spinner-border-sm"></div>Save
+                    <p-toast></p-toast>
+                    <button class="btn btn-outline-primary" *ngIf=" questionObj.questionId==0" (click)="onSave()"><i class="fa-solid fa-floppy-disk me-1" style="color: black;"></i>
+
+                      Save
                     </button>
-                </div>
+
                   <!-- <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()">
 
                     <div class="spinner-border spinner-border-sm"></div>Save

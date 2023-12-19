@@ -1,10 +1,14 @@
+import { SearchService } from './../../core/services/search/search.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  providers:[MessageService]
 })
 export class UserComponent {
 
@@ -20,12 +24,34 @@ export class UserComponent {
     collegeName: "",
     stream: "",
     role: "",
-   
-   
+
+
   }
+  filterUserArray:any[]=[];
 
   userArray:any[]=[];
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient,private searchSrv:SearchService,private msgSrv:MessageService) {
+   
+
+    this.searchSrv.searchText.subscribe((res:any)=>{
+    debugger;
+      this.filterUserArray = this.userArray.filter((param: any) => {
+        let search = res;
+        let value = Object.values(param)
+        let flag = false;
+        value.forEach((val: any) => {
+          if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
+            flag = true;
+            return;
+          }
+        });
+        if (flag) {
+          return param;
+        }
+      });
+    })
+  }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -34,6 +60,7 @@ export class UserComponent {
   getAllUsers() {
     this.http.get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllUsers').subscribe((res: any) => {
         this.userArray = res.data;
+        this.filterUserArray=res.data;
       });
   }
   bulkData() {
@@ -55,7 +82,8 @@ export class UserComponent {
   save() {
     this.http.post('https://freeapi.miniprojectideas.com/api/OnlineTest/AddUpdateBulkUsers',this.userArray).subscribe((res: any) => {
         if (res.result) {
-          alert(res.message);
+        this.msgSrv.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+          // alert(res.message);
           this.getAllUsers();
         } else {
           alert(res.message);
@@ -65,7 +93,7 @@ export class UserComponent {
 
   edit(user:any){
     user.isEdit=true;
-   
+
   }
 
   update(){}

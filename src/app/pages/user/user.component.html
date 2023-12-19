@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of userArray ;let sr=index">
+                            <tr *ngFor="let user of  filterUserArray ; let sr=index">
                                 <td>{{sr+1}}</td>
                                 <td>
                                     <div *ngIf="user.isEdit">
@@ -110,17 +110,17 @@
                                         {{user.role}}
                                     </div>
                                 </td>
-                            
+
                                 <td>
                                    <div class="d-flex">
                                     <button type="button"  class="btn border-0"
                                     (click)="edit(user)"><i class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i></button>
-                                    
+
                                     <button type="button" class="btn border-0"
                                         (click)="delete(user.userId)"><i class="fa-solid fa-trash-can fs-6" style="color: red;"></i></button>
                                    </div>
-                                       
-                                    
+
+
                                 </td>
 
                             </tr>
@@ -130,6 +130,7 @@
                 </div>
                 <div class="card-footer bg-light">
                     <div>
+                        <p-toast></p-toast>
                         <!-- <button type="button" *ngIf="userObj.userId ==! 0" class="btn border-0 btn-outline-primary"
                         (click)="update()">Update</button> -->
                         <button type="button" *ngIf="userObj.userId == 0" class="btn btn-outline-primary"   (click)="save()"><i class="fa-solid fa-floppy-disk fs-6 me-1" style="color: black;"> </i>Save / Update</button>
