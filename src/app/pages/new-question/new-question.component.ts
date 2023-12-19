@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConfirmationService,MessageService } from 'primeng/api';
 
 import { QuestionService } from 'src/app/core/services/question/question.service';
+import { SearchService } from 'src/app/core/services/search/search.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { QuestionService } from 'src/app/core/services/question/question.service
   providers: [MessageService]
 })
 export class NewQuestionComponent {
+  filterQuestionArray:any[]=[];
   questionArray: any[] = [];
   catagoryArray: any[] = [];
   addquestion: boolean = false;
@@ -35,7 +37,28 @@ export class NewQuestionComponent {
     isCorrect: false,
   };
 
-  constructor(private questionSer: QuestionService,private msgSer:MessageService) {
+  constructor(private questionSer: QuestionService,private msgSer:MessageService,private searchSrv:SearchService) {
+    this.searchSrv.searchText.subscribe((res:any)=>{
+    this.filterQuestionArray = this.questionArray.filter((param: any) => {
+      let search = res;
+      let value = Object.values(param)
+      let flag = false;
+      value.forEach((val: any) => {
+        if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
+          flag = true;
+          return;
+        }
+      });
+      if (flag) {
+        return param;
+      }
+    });
+  })
+
+
+}
+
+  ngOnInit(): void {
     this.loadQuestion();
     this.loadCatagory();
   }
@@ -43,6 +66,7 @@ export class NewQuestionComponent {
   loadQuestion() {
     this.questionSer.getAllQuestion().subscribe((res: any) => {
       this.questionArray = res.data;
+      this.filterQuestionArray=res.data;
     });
   }
 

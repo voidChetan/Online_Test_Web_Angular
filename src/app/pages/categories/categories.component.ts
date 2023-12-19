@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
   selector: 'app-categories',
@@ -14,10 +15,28 @@ export class CategoriesComponent implements OnInit {
     imageUrl: '',
   };
   categoryArray: any[] = [];
-
+  filterCatagoryArray:any[]=[];
   parentCate: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private serchSrv:SearchService) {
+    this.serchSrv.searchText.subscribe((res:any)=>{
+      this.filterCatagoryArray=this.categoryArray.filter((param:any)=>{
+        let search = res;
+        let value = Object.values(param)
+        let flag = false;
+        value.forEach((val: any) => {
+          if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
+            flag = true;
+            return;
+          }
+        });
+        if (flag) {
+          return param;
+        }
+      });
+      })
+
+  }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -30,6 +49,7 @@ export class CategoriesComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.categoryArray = res.data;
+        this.filterCatagoryArray=res.data;
         this.parentCate = res.data.filter((m: any) => m.parentCategoryId == 0);
       });
   }
