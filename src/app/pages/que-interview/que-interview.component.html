@@ -12,7 +12,7 @@
             </div>
             <div class="col-6">
                 <label for="">Topics :</label>
-                <select [(ngModel)]="topicId" name="topic" class="form-control">
+                <select [(ngModel)]="addQue.languageTopicId" name="topic" class="form-control">
                     <option value="select Category">Select</option>
                     <option [value]="list.languageTopicId" *ngFor="let list of topicArray">
                         {{list.topicName}}</option>
@@ -32,7 +32,7 @@
                     <button type="button" class="btn btn-primary" (click)="addLanguageQuestions(addQue)">Save</button>
                 </div>
             </div>
-         </div>   
+         </div>
         </form>
 
     </div>
