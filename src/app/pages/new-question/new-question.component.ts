@@ -39,20 +39,7 @@ export class NewQuestionComponent {
 
   constructor(private questionSer: QuestionService,private msgSer:MessageService,private searchSrv:SearchService) {
     this.searchSrv.searchText.subscribe((res:any)=>{
-    this.filterQuestionArray = this.questionArray.filter((param: any) => {
-      let search = res;
-      let value = Object.values(param)
-      let flag = false;
-      value.forEach((val: any) => {
-        if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
-          flag = true;
-          return;
-        }
-      });
-      if (flag) {
-        return param;
-      }
-    });
+    this.filterQuestionArray = this.searchSrv.getFilteredData(this.questionArray,res)
   })
 
 

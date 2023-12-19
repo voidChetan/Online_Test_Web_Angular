@@ -11,7 +11,7 @@ import { SearchService } from 'src/app/core/services/search/search.service';
 })
 export class NewTestComponent implements OnInit {
 
- 
+
   categoryId: number = 0;
   questionId: number = 0;
 
@@ -36,23 +36,9 @@ export class NewTestComponent implements OnInit {
 
   constructor(private http: HttpClient,private msgSrv:MessageService,private searchSrv:SearchService) {
     this.searchSrv.searchText.subscribe((res:any)=>{
-      this.filteredTestArray=this.TestArray.filter((param:any)=>{
-        let search = res;
-        let value = Object.values(param);
-        let flag = false;
-        value.forEach((val:any) => {
-         if(val !== null && val !==undefined && val.toString().toLowerCase().indexOf(search) > -1){
-          flag =true;
-          return;
-         }
-        });
-      if(flag){
-        return param;
-      }
-        
-      });
+      this.filteredTestArray=this.searchSrv.getFilteredData(this.TestArray,res)
     })
-   
+
   }
 
   ngOnInit(): void {
@@ -74,7 +60,7 @@ export class NewTestComponent implements OnInit {
       testId: 0,
     };
   }
- 
+
   getAllTest() {
     this.http
       .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
@@ -127,10 +113,10 @@ export class NewTestComponent implements OnInit {
       questionName:parse.questionName,
       testId: 0,
     };
-    
+
     this.testObj.quizTestQuestions.push(questionobj);
-   
-   
+
+
   }
 
   save() {
@@ -172,6 +158,6 @@ export class NewTestComponent implements OnInit {
           }
         });
     }
-    
+
    }
 }
