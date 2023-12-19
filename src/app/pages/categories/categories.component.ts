@@ -20,20 +20,7 @@ export class CategoriesComponent implements OnInit {
 
   constructor(private http: HttpClient,private serchSrv:SearchService) {
     this.serchSrv.searchText.subscribe((res:any)=>{
-      this.filterCatagoryArray=this.categoryArray.filter((param:any)=>{
-        let search = res;
-        let value = Object.values(param)
-        let flag = false;
-        value.forEach((val: any) => {
-          if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
-            flag = true;
-            return;
-          }
-        });
-        if (flag) {
-          return param;
-        }
-      });
+      this.filterCatagoryArray=  this.serchSrv.getFilteredData(this.categoryArray,res)
       })
 
   }
