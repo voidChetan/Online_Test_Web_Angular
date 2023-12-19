@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-new-test',
   templateUrl: './new-test.component.html',
   styleUrls: ['./new-test.component.css'],
+  providers:[MessageService]
 })
 export class NewTestComponent implements OnInit {
 
@@ -31,13 +33,27 @@ export class NewTestComponent implements OnInit {
 
   categoryArray: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private msgSrv:MessageService) {}
 
   ngOnInit(): void {
     this.getAllTest();
     this.getAllCategory();
   }
 
+  reset(){
+    this.testObj = {
+      testId: 0,
+      testName: '',
+      description: '',
+      duration: '',
+      quizTestQuestions: [],
+    };
+    this.quizQuestions = {
+      testQuestionId: 0,
+      questionId: 0,
+      testId: 0,
+    };
+  }
  
   getAllTest() {
     this.http
@@ -104,7 +120,8 @@ export class NewTestComponent implements OnInit {
       )
       .subscribe((res: any) => {
         if (res.result) {
-          alert(res.message);
+        this.msgSrv.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+          this.reset();
           this.getAllTest();
         } else {
           alert(res.message);
@@ -117,10 +134,6 @@ export class NewTestComponent implements OnInit {
     this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/getTestByTestId?testId="+id).subscribe((res:any)=>{
       this.testObj=res.data;
       this.testObj.quizTestQuestions=res.data.quizTestQuestions;
-
-      console.log(this.testObj);
-      console.log(this.testObj.quizTestQuestions);
-
     })
 
    }

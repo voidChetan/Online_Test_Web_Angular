@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  providers:[MessageService]
 })
 export class UserComponent {
 
@@ -25,7 +27,7 @@ export class UserComponent {
   }
 
   userArray:any[]=[];
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private msgSrv:MessageService) {}
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -55,7 +57,8 @@ export class UserComponent {
   save() {
     this.http.post('https://freeapi.miniprojectideas.com/api/OnlineTest/AddUpdateBulkUsers',this.userArray).subscribe((res: any) => {
         if (res.result) {
-          alert(res.message);
+        this.msgSrv.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+          // alert(res.message);
           this.getAllUsers();
         } else {
           alert(res.message);

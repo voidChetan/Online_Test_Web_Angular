@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header bg-primary text-white d-flex justify-content-between">
+                <div class="card-header bg-info text-white d-flex justify-content-between">
                     <h4>Tests</h4>
-                   <button type="button" class="btn btn-outline-success text-dark border-0" (click)="displayAlltest =!displayAlltest">All Tests</button>
+                   <button type="button" class="btn   border-0" (click)="displayAlltest =!displayAlltest"><i class="fa-solid fa-plus fs-5" style="color: white;"></i></button>
 
                 </div>
                 <div class="card-body">
@@ -41,6 +41,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="my-2">
+                                                <p-toast></p-toast>
+
                                                 <button type="button" class="btn btn-outline-primary"
                                                     (click)="save()"><i class="fa-solid fa-floppy-disk me-1" style="color: black;"></i>Save</button>
                                             </div>
