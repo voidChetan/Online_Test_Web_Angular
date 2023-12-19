@@ -1,5 +1,7 @@
+import { SearchService } from './../../core/services/search/search.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-user',
@@ -20,12 +22,51 @@ export class UserComponent {
     collegeName: "",
     stream: "",
     role: "",
-   
-   
+
+
   }
+  filterUserArray:any[]=[];
 
   userArray:any[]=[];
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient,private searchSrv:SearchService) {
+    // this.searchSrv.searchText.subscribe((res:any)=>{
+    //   debugger;
+    //   this.filterUserArray=this.userArray.filter((param:any)=>{
+    //     let serach = res;
+    //     let values = Object.values(param);
+    //     let flag = false;
+    //     values.forEach((val:any)=>{
+    //       if(val.toString().toLowerCase().indexOf(serach) > -1){
+    //         flag = true;
+    //         return;
+    //       }
+
+    //     });
+    //     if(flag){
+    //       return param;
+    //     }
+    //   });
+    // })
+
+    this.searchSrv.searchText.subscribe((res:any)=>{
+    debugger;
+      this.filterUserArray = this.userArray.filter((param: any) => {
+        let search = res;
+        let value = Object.values(param)
+        let flag = false;
+        value.forEach((val: any) => {
+          if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
+            flag = true;
+            return;
+          }
+        });
+        if (flag) {
+          return param;
+        }
+      });
+    })
+  }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -34,6 +75,7 @@ export class UserComponent {
   getAllUsers() {
     this.http.get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllUsers').subscribe((res: any) => {
         this.userArray = res.data;
+        this.filterUserArray=res.data;
       });
   }
   bulkData() {
@@ -65,7 +107,7 @@ export class UserComponent {
 
   edit(user:any){
     user.isEdit=true;
-   
+
   }
 
   update(){}
