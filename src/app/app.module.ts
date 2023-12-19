@@ -42,7 +42,7 @@ import { AssignedTestComponent } from './pages/assigned-test/assigned-test.compo
 
 
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
