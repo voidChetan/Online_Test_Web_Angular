@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
     NewTestComponent,
     NewQuestionComponent,
     LayoutComponent,
+    AssignedTestComponent,
 
   ],
   imports: [
