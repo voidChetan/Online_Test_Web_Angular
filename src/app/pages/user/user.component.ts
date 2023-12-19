@@ -1,12 +1,14 @@
 import { SearchService } from './../../core/services/search/search.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { __param } from 'tslib';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  providers:[MessageService]
 })
 export class UserComponent {
 
@@ -29,25 +31,8 @@ export class UserComponent {
 
   userArray:any[]=[];
 
-  constructor(private http: HttpClient,private searchSrv:SearchService) {
-    // this.searchSrv.searchText.subscribe((res:any)=>{
-    //   debugger;
-    //   this.filterUserArray=this.userArray.filter((param:any)=>{
-    //     let serach = res;
-    //     let values = Object.values(param);
-    //     let flag = false;
-    //     values.forEach((val:any)=>{
-    //       if(val.toString().toLowerCase().indexOf(serach) > -1){
-    //         flag = true;
-    //         return;
-    //       }
-
-    //     });
-    //     if(flag){
-    //       return param;
-    //     }
-    //   });
-    // })
+  constructor(private http: HttpClient,private searchSrv:SearchService,private msgSrv:MessageService) {
+   
 
     this.searchSrv.searchText.subscribe((res:any)=>{
     debugger;
@@ -97,7 +82,8 @@ export class UserComponent {
   save() {
     this.http.post('https://freeapi.miniprojectideas.com/api/OnlineTest/AddUpdateBulkUsers',this.userArray).subscribe((res: any) => {
         if (res.result) {
-          alert(res.message);
+        this.msgSrv.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+          // alert(res.message);
           this.getAllUsers();
         } else {
           alert(res.message);
