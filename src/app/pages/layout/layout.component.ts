@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
+  constructor(private serchSrv:SearchService){
+
+  }
+  enteredSerchValue:string = '';
+
+  onSerchChange(text:string){
+
+
+      this.serchSrv.searchText.next(text);
+
+
+  }
 }
