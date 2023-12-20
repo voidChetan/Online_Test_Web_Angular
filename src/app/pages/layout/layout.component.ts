@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
@@ -8,9 +9,24 @@ import { SearchService } from 'src/app/core/services/search/search.service';
 })
 export class LayoutComponent {
 
-  constructor(private serchSrv:SearchService){
+  retrievedData: any;
 
+  constructor(private serchSrv:SearchService,private route:Router){
+
+    
+    let storedData = localStorage.getItem('LoggedUserData');
+
+    // Parse the JSON data
+    if (storedData) {
+      this.retrievedData = JSON.parse(storedData);
+    } else {
+      this.retrievedData = 'No data found in local storage.';
+    }
+      
   }
+
+ 
+
   enteredSerchValue:string = '';
 
   onSerchChange(text:string){

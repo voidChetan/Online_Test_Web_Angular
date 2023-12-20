@@ -34,18 +34,33 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userSrv: UserService
-  ) {}
+    private userSrv: UserService,
+    private route:Router
+  ) {
+    const id=localStorage.getItem("LoggedUserData");
+    // if(id != null ){
+    //   this.route.navigateByUrl("user")
+    // }
+    // else{
+    //   this.route.navigateByUrl("login");
+    // }
+  }
 
   onLogin() {
     if (this.isApiCallInProgress == false) {
       this.isApiCallInProgress = true;
       this.http.post('https://freeapi.miniprojectideas.com/api/OnlineTest/Login',this.loginObj)
         .subscribe((result: any) => {
-          debugger;
+          
           if (result.result) {
             localStorage.setItem('LoggedUserData', JSON.stringify(result.data));
-            this.router.navigateByUrl('user');
+            if(result.data.role == 'admin'){
+              this.route.navigateByUrl("user")
+            }
+            else if(result.data.role == 'student' || result.data.role == 'Student'  ){
+              this.route.navigateByUrl("student-Test")
+            }
+            //this.router.navigateByUrl('user');
           } else {
             alert('Check email or password');
           }
