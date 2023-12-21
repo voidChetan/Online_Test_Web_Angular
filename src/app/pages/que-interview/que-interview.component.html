@@ -1,5 +1,39 @@
-<div class="container">
-    <div class="row">
-        
+<div class="container mt-5">
+    <div class="row pt-5" style="margin: 100px;">
+        <form>
+         <div class="row ">
+            <div class="col-6 ">
+                <label for="">Languages :</label>
+                <select [(ngModel)]="languageId" name="language" class="form-control" (change)="getTopic()">
+                    <option value="select Category">Select</option>
+                    <option [value]="list.languageId" *ngFor="let list of languageArray">
+                        {{list.language}}</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="">Topics :</label>
+                <select [(ngModel)]="addQue.languageTopicId" name="topic" class="form-control">
+                    <option value="select Category">Select</option>
+                    <option [value]="list.languageTopicId" *ngFor="let list of topicArray">
+                        {{list.topicName}}</option>
+                </select>
+            </div>
+            <div class="col-12 py-3">
+                <label for="">Add Your Questions :</label>
+                <textarea name="question" class="form-control" cols="10" rows="5" [(ngModel)]="addQue.question"></textarea>
+            </div>
+            <div class="col-12">
+                <label for="">Add Answer</label>
+                <p-editor name="questionName" [(ngModel)]="addQue.answer"></p-editor>
+
+            </div>
+            <div class="col-12">
+                <div class="my-2">
+                    <button type="button" class="btn btn-primary" (click)="addLanguageQuestions(addQue)">Save</button>
+                </div>
+            </div>
+         </div>
+        </form>
+
     </div>
 </div>

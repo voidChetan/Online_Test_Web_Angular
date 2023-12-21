@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let question of  questionArray; let sr=index">
+            <tr *ngFor="let question of  filterQuestionArray; let sr=index">
               <td>{{sr+1}}</td>
               <td>{{question.questionName}}</td>
               <td>{{question.codeSnipetText}}</td>

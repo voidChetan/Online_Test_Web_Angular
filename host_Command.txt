@@ -1,0 +1,2 @@
+ng build --base-href "https://voidChetan.github.io/Online_Test_Web_Angular/"
+npx angular-cli-ghpages --dir=dist/online_test_website

@@ -36,20 +36,7 @@ export class UserComponent {
 
     this.searchSrv.searchText.subscribe((res:any)=>{
     debugger;
-      this.filterUserArray = this.userArray.filter((param: any) => {
-        let search = res;
-        let value = Object.values(param)
-        let flag = false;
-        value.forEach((val: any) => {
-          if (val !== null && val !== undefined && val.toString().toLowerCase().indexOf(search) > -1) {
-            flag = true;
-            return;
-          }
-        });
-        if (flag) {
-          return param;
-        }
-      });
+      this.filterUserArray = this.searchSrv.getFilteredData(this.userArray,res)
     })
   }
 

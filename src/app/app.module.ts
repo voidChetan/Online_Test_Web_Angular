@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
 import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
+import { StudentTestComponent } from './pages/student-test/student-test.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { QueInterviewComponent } from './pages/que-interview/que-interview.compo
     LayoutComponent,
     AssignedTestComponent,
     QueInterviewComponent,
+    StudentTestComponent,
+    ProfileComponent,
 
   ],
   imports: [
