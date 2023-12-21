@@ -18,6 +18,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
 import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
 import { StudentTestComponent } from './pages/student-test/student-test.component';
+import { StartTestComponent } from './pages/start-test/start-test.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { StudentTestComponent } from './pages/student-test/student-test.componen
     AssignedTestComponent,
     QueInterviewComponent,
     StudentTestComponent,
+    StartTestComponent,
 
   ],
   imports: [

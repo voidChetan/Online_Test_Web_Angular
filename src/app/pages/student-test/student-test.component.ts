@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-test',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class StudentTestComponent implements OnInit {
 
   testArray:any[]=[];
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient,private route:Router){
 
   }
 
@@ -21,6 +22,10 @@ export class StudentTestComponent implements OnInit {
     this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest").subscribe((res:any)=>{
     this.testArray=res.data;
     })
+  }
+
+  startTest(id:number){
+    this.route.navigate(['/start-test',id])
   }
 
 }
