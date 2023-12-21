@@ -1,1 +1,90 @@
-<p>profile works!</p>
+<div class="container mt-5">
+  <!-- <div class="row"> -->
+  <div class="card">
+    <div class="card-header  bg-info">
+      <div class="row">
+        <div class="col-md-6 fs-4 text-light fw-bold">profile Updated</div>
+        <div class="col-md-6 text-end">
+          <button class="btn btn-sm btn-danger">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="row">
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Email</label>
+                <input type="text" name="emailId" class="form-control" [(ngModel)]="profileObj.emailid">
+              </div>
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Moblie </label>
+                <input type="text" name="mobileNo" class="form-control" [(ngModel)]="profileObj.mobileNo">
+
+              </div>
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Password</label>
+                <input type="text" name="password" class="form-control" [(ngModel)]="profileObj.password">
+              </div>
+
+              <div class="col-6 ">
+                <label for="" class="text-secondary  fw-bold p-2">fullName</label>
+                <input type="text" name="fullName" class="form-control" [(ngModel)]="profileObj.fullName">
+              </div>
+
+
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">gender</label>
+                <input type="text" name="gender" class="form-control" [(ngModel)]="profileObj.gender">
+
+              </div>
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">registrationCode</label>
+                <input type="text" name="registrationCode" class="form-control"
+                  [(ngModel)]="profileObj.registrationCode">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">collegeName</label>
+                <input type="text" name="collegeName" class="form-control" [(ngModel)]="profileObj.collegeName">
+
+              </div>
+
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Stream</label>
+                <input type="text" name="stream" class="form-control" [(ngModel)]="profileObj.stream">
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">Role</label>
+                <input type="text" name=" role" class="form-control" [(ngModel)]="profileObj.role">
+              </div>
+              <div class="col-6">
+                <label for="" class="text-secondary  fw-bold p-2">collegeName</label>
+                <input type="text" name="collegeName" class="form-control" [(ngModel)]="profileObj.collegeName">
+              </div>
+            </div>
+            <div class="row text-centre p-2">
+              <div class="col-6">
+                <button class="btn btn-sm btn-danger">Reset</button>
+              </div>
+
+              <div class="col-6">
+                <button class="btn btn-sm btn-warning" (click)="onUpdate()">
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
