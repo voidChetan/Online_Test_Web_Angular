@@ -4,12 +4,11 @@
       <div class="card">
         <div class="card-header bg-secondary text-end ">
 
-          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" (click)="openmodal()"
-            data-bs-target="#myModal">
-            Add
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#myModal">
+            AssignTest
           </button>
 
-          <button type="button" class="btn btn-warning me-2" (click)="bulkAssignTestData()">AssignTest</button>
+          <button type="button" class="btn btn-warning me-2" (click)="bulkAssignTestData()"> Add Bulk</button>
 
         </div>
         <div class="card-body">
@@ -62,7 +61,7 @@
                 </td>
                 <td>
                   <div *ngIf="test.isEdit">
-                    <input type="text" name="assignedDate" [(ngModel)]="test.assignedDate" placeholder="assigned Date"
+                    <input type="date" name="assignedDate" [(ngModel)]="test.assignedDate" placeholder="assigned Date"
                       class="form-control">
                   </div>
                   <div *ngIf="!test.isEdit">
@@ -71,7 +70,7 @@
                 </td>
                 <td>
                   <div *ngIf="test.isEdit">
-                    <input type="text" name="completedeDate" [(ngModel)]="test.completedeDate"
+                    <input type="date" name="completedeDate" [(ngModel)]="test.completedeDate"
                       placeholder="completede Date" class="form-control">
                   </div>
                   <div *ngIf="!test.isEdit">
@@ -80,8 +79,11 @@
                 </td>
                 <td>
                   <div *ngIf="test.isEdit">
-                    <input type="text" name="isCompleted" [(ngModel)]="test.isCompleted" placeholder="is Completed"
-                      class="form-control">
+                    <input type="radio" name="{{sr}}isCompleted" value="Yes" [(ngModel)]="test.isCompleted"><span
+                      class="ms-2">Yes</span><br>
+                    <input type="radio" name="{{sr}}isCompleted" value="No" [(ngModel)]="test.isCompleted"><span
+                      class="ms-2">No</span>
+
                   </div>
                   <div *ngIf="!test.isEdit">
                     {{test.isCompleted}}
@@ -89,8 +91,12 @@
                 </td>
                 <td>
                   <div *ngIf="test.isEdit">
-                    <input type="text" name="isStarted" [(ngModel)]="test.isStarted" placeholder="is Started"
-                      class="form-control">
+                    <input type="radio" name="{{sr}}isStarted" value="Yes" [(ngModel)]="test.isStarted"><span
+                      class="ms-2">Yes</span><br>
+                    <input type="radio" name="{{sr}}isStarted" value="No" [(ngModel)]="test.isStarted"><span
+                      class="ms-2">No</span>
+
+
                   </div>
                   <div *ngIf="!test.isEdit">
                     {{test.isStarted}}
@@ -98,7 +104,7 @@
                 </td>
                 <td>
                   <div *ngIf="test.isEdit">
-                    <input type="text" name="startedDate" [(ngModel)]="test.startedDate"
+                    <input type="date" name="startedDate" [(ngModel)]="test.startedDate"
                       placeholder="Enter started Date" class="form-control">
                   </div>
                   <div *ngIf="!test.isEdit">
@@ -144,8 +150,6 @@
         <div class="card-footer bg-light">
           <div>
 
-            <!-- <p-toast></p-toast>
-            <button type="button" pButton pRipple (click)="showSuccess()" label="Success" class="p-button-success"></button> -->
             <button type="button" class="btn btn-outline-primary" (click)="onSave()">Save / Update</button>
 
           </div>
@@ -167,7 +171,7 @@
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Assigned Test</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closemodal()"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
           <!-- Modal body -->
@@ -177,11 +181,12 @@
               <div class="row">
                 <div class="col-6">
                   <label for=""> Registration Code</label>
-                  <input type="text" class="form-control" name="registrationCode" [(ngModel)]="registrationCode">
+                  <input type="text" class="form-control" name="registrationCode"
+                    [(ngModel)]="assignTestObj.registrationCode">
                 </div>
                 <div class="col-6">
                   <label for=""> Test</label>
-                  <select class="form-select" name="testId" [(ngModel)]="testId">
+                  <select class="form-select" name="testId" [(ngModel)]="assignTestObj.testId">
                     <option value="select">Select</option>
                     <option *ngFor="let test of TestArray" [value]="test.testId">{{test.testName}}</option>
                   </select>
@@ -198,15 +203,14 @@
                 <button class="btn btn-danger" (click)="onReset()">Reset</button>
               </div>
               <div class="col-6">
-                <!-- <p-toast></p-toast> -->
-                <!-- <button type="button" pButton pRipple (click)="showSuccess()"  (click)="assignTest()" label="Success" class="p-button-success">Save</button> -->
-                <button class="btn btn-success ms-4" (click)="assignTest()" >Save
-                  <span class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span></button>
-
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" (click)="assignTest()">
+                  <span class="spinner-grow spinner-grow-sm" *ngIf="isAPICallInProgress"></span>
+                  Save</button>
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
     </div>
+  </div>

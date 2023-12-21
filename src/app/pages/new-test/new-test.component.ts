@@ -7,7 +7,7 @@ import { SearchService } from 'src/app/core/services/search/search.service';
   selector: 'app-new-test',
   templateUrl: './new-test.component.html',
   styleUrls: ['./new-test.component.css'],
-  providers:[MessageService]
+
 })
 export class NewTestComponent implements OnInit {
 
@@ -36,7 +36,21 @@ export class NewTestComponent implements OnInit {
 
   constructor(private http: HttpClient,private msgSrv:MessageService,private searchSrv:SearchService) {
     this.searchSrv.searchText.subscribe((res:any)=>{
-      this.filteredTestArray=this.searchSrv.getFilteredData(this.TestArray,res)
+      this.filteredTestArray=this.TestArray.filter((param:any)=>{
+        let search = res;
+        let value = Object.values(param);
+        let flag = false;
+        value.forEach((val:any) => {
+         if(val !== null && val !==undefined && val.toString().toLowerCase().indexOf(search) > -1){
+          flag =true;
+          return;
+         }
+        });
+      if(flag){
+        return param;
+      }
+
+      });
     })
 
   }

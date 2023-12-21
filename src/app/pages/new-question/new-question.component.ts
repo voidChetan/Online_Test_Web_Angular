@@ -9,7 +9,7 @@ import { SearchService } from 'src/app/core/services/search/search.service';
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
   styleUrls: ['./new-question.component.css'],
-  providers: [MessageService]
+
 })
 export class NewQuestionComponent {
   filterQuestionArray:any[]=[];

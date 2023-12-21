@@ -48,7 +48,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 
   ],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
