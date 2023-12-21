@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-end">
+            <div class="mt-4 card shadow text-dark text-end ">
+              <div class=" bg-info p-2">
+                Remaning time :{{remainingTime}}
+              </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card shadow p-2 mt-5" *ngFor="let que of questionArray">
+                <div class="row">
+                    <div class="col-12">
+                          <div>
+                            <p >Question 1 : {{que.questionName}}</p>
+                          </div>
+                    </div>
+                    <div class="col-6" *ngFor="let opt of que.options ; let sr=index" >
+                        <div >
+                            <input type="radio" name="{{sr}}option"  class="mx-2" ><span>{{opt.optionText}}</span>
+                        </div>
+                    </div>
+                                      
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="text-center mt-5">
+                    <button type="button" class="btn btn-primary ">Submit Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
