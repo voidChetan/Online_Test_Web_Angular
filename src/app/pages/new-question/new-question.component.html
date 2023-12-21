@@ -81,7 +81,9 @@
                 <div class="col-6">
                   <label for="" class="text-secondary  fw-bold p-2">category Name</label>
 
+
                   <select name="categoryId" class="form-control" [(ngModel)]="questionObj.categoryId">
+
 
                     <option *ngFor="let items of  catagoryArray" [value]="items.categoryId">
                       {{items.categoryName}}
