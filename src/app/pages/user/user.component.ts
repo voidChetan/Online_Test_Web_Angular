@@ -8,7 +8,7 @@ import { __param } from 'tslib';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-  providers:[MessageService]
+
 })
 export class UserComponent {
 
@@ -32,7 +32,7 @@ export class UserComponent {
   userArray:any[]=[];
 
   constructor(private http: HttpClient,private searchSrv:SearchService,private msgSrv:MessageService) {
-   
+
 
     this.searchSrv.searchText.subscribe((res:any)=>{
     debugger;

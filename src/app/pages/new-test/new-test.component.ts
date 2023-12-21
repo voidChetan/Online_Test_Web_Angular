@@ -7,11 +7,11 @@ import { SearchService } from 'src/app/core/services/search/search.service';
   selector: 'app-new-test',
   templateUrl: './new-test.component.html',
   styleUrls: ['./new-test.component.css'],
-  providers:[MessageService]
+
 })
 export class NewTestComponent implements OnInit {
 
- 
+
   categoryId: number = 0;
   questionId: number = 0;
 
@@ -49,10 +49,10 @@ export class NewTestComponent implements OnInit {
       if(flag){
         return param;
       }
-        
+
       });
     })
-   
+
   }
 
   ngOnInit(): void {
@@ -74,7 +74,7 @@ export class NewTestComponent implements OnInit {
       testId: 0,
     };
   }
- 
+
   getAllTest() {
     this.http
       .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
@@ -127,10 +127,10 @@ export class NewTestComponent implements OnInit {
       questionName:parse.questionName,
       testId: 0,
     };
-    
+
     this.testObj.quizTestQuestions.push(questionobj);
-   
-   
+
+
   }
 
   save() {
@@ -172,6 +172,6 @@ export class NewTestComponent implements OnInit {
           }
         });
     }
-    
+
    }
 }

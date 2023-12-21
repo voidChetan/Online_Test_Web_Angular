@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 import { AssignedTestService } from 'src/app/core/services/user/assigned-test.service';
 
@@ -26,7 +27,8 @@ export class AssignedTestComponent {
   };
   constructor(
     private http: HttpClient,
-    private assignSrv: AssignedTestService
+    private assignSrv: AssignedTestService,
+    private msgSrv: MessageService
   ) {
     this.getAllAssignedTest();
     this.getAllTest();
@@ -66,13 +68,22 @@ export class AssignedTestComponent {
       this.assignSrv.assignedTest(this.assignTestObj).subscribe(
         (res: any) => {
           if (res.result) {
-            alert(res.message);
+            this.msgSrv.add({
+              severity: 'success',
+              summary: 'Successfully',
+              detail: res.message,
+            });
 
-
-            this.closemodal();
+            //  alert(res.message);
             this.getAllTest();
           } else {
-            alert(res.message);
+            this.msgSrv.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: res.message,
+            });
+
+            // alert(res.message);
           }
           this.isAPICallInProgress == false;
         },
@@ -102,34 +113,20 @@ export class AssignedTestComponent {
   onDelete(id: number) {
     const isConfirm = confirm('Are You Sure Want to Delete ?');
     if (isConfirm) {
-    this.assignSrv.deleteAssignedTestBytestId(id).subscribe((res: any) => {
-      if (res.result) {
-        alert(res.message);
-        this.getAllTest();
-      } else {
-        alert(res.message);
-      }
-    });
-  }
+      this.assignSrv.deleteAssignedTestBytestId(id).subscribe((res: any) => {
+        if (res.result) {
+          alert(res.message);
+          this.getAllTest();
+        } else {
+          alert(res.message);
+        }
+      });
+    }
   }
   onReset() {
     this.assignTestObj = {
       registrationCode: '',
       testId: 0,
     };
-  }
-  //   showSuccess() {
-  //     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-  // }
-
-
-  openmodal() {
-    const modaldiv = document.getElementById('myModal');
-    if (modaldiv != null) modaldiv.style.display = 'block';
-  }
-
-  closemodal() {
-    const modaldiv = document.getElementById('myModal');
-    if (modaldiv != null) modaldiv.style.display = 'none';
   }
 }

@@ -8,7 +8,7 @@ import { QuestionService } from 'src/app/core/services/question/question.service
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
   styleUrls: ['./new-question.component.css'],
-  providers: [MessageService]
+
 })
 export class NewQuestionComponent {
   questionArray: any[] = [];
