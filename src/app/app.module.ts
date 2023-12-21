@@ -19,6 +19,7 @@ import { AssignedTestComponent } from './pages/assigned-test/assigned-test.compo
 import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
 import { StudentTestComponent } from './pages/student-test/student-test.component';
 import { StartTestComponent } from './pages/start-test/start-test.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { StartTestComponent } from './pages/start-test/start-test.component';
     QueInterviewComponent,
     StudentTestComponent,
     StartTestComponent,
+    ProfileComponent,
 
   ],
   imports: [
@@ -48,7 +50,7 @@ import { StartTestComponent } from './pages/start-test/start-test.component';
 
 
   ],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

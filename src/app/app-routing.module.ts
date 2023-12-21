@@ -10,6 +10,7 @@ import { AssignedTestComponent } from './pages/assigned-test/assigned-test.compo
 import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
 import { StudentTestComponent } from './pages/student-test/student-test.component';
 import { StartTestComponent } from './pages/start-test/start-test.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path:'start-test/:id',
         component:StartTestComponent
+      },
+      {
+        path:'profile',
+        component:ProfileComponent
       }
     ],
   },

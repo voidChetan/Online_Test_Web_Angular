@@ -8,7 +8,7 @@ import { __param } from 'tslib';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-  providers:[MessageService]
+
 })
 export class UserComponent {
 
