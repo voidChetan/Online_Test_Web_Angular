@@ -20,6 +20,7 @@ import { QueInterviewComponent } from './pages/que-interview/que-interview.compo
 import { StudentTestComponent } from './pages/student-test/student-test.component';
 import { StartTestComponent } from './pages/start-test/start-test.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     EditorModule,
     ToastModule,
     MessagesModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    DropdownModule
 
 
   ],

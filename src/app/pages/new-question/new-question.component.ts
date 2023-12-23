@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfirmationService,MessageService } from 'primeng/api';
+import { CategoriesService } from 'src/app/core/services/categories/categories.service';
 
 import { QuestionService } from 'src/app/core/services/question/question.service';
 import { SearchService } from 'src/app/core/services/search/search.service';
@@ -37,7 +38,7 @@ export class NewQuestionComponent {
     isCorrect: false,
   };
 
-  constructor(private questionSer: QuestionService,private msgSer:MessageService,private searchSrv:SearchService) {
+  constructor(private questionSer: QuestionService,private msgSer:MessageService,private searchSrv:SearchService,private cateSrv:CategoriesService) {
     this.searchSrv.searchText.subscribe((res:any)=>{
     this.filterQuestionArray = this.searchSrv.getFilteredData(this.questionArray,res)
   })
@@ -58,8 +59,10 @@ export class NewQuestionComponent {
   }
 
   loadCatagory() {
-   this.questionSer.getAllQuestion().subscribe((res:any)=>{
+   this.cateSrv.getAllCategory().subscribe((res:any)=>{
+
     this.catagoryArray=res.data;
+    console.log(this.catagoryArray)
    })
   }
 

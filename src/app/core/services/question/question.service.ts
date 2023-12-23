@@ -29,9 +29,9 @@ export class QuestionService {
     return this.global.get(questionConst.question.getQuestionById+id)
 
   }
-  getAllCatagory(): Observable<any>{
-    return this.global.get(questionConst.question.getAllCatagory);
-  }
+  // getAllCatagory(): Observable<any>{
+  //   return this.global.get(questionConst.question.getAllCatagory);
+  // }
   getQuestionById(id:number): Observable<any>{
     return this.global.get(questionConst.question.getQuestionById+id);
 

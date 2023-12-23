@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-12">
                           <div>
-                            <p >Question 1 : {{que.questionName}}</p>
+                            <p >Question 1 : <span [innerHTML]="que.questionName"></span> </p>
                           </div>
                     </div>
                     <div class="col-6" *ngFor="let opt of que.options ; let sr=index" >
@@ -20,12 +20,12 @@
                             <input type="radio" name="{{sr}}option"  class="mx-2" ><span>{{opt.optionText}}</span>
                         </div>
                     </div>
-                                      
+
                 </div>
             </div>
             <div class="col-12">
                 <div class="text-center mt-5">
-                    <button type="button" class="btn btn-primary ">Submit Test</button>
+                    <button type="button" class="btn btn-primary"(click)="submit()" >Submit Test</button>
                 </div>
             </div>
         </div>

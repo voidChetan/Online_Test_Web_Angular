@@ -10,13 +10,14 @@ import { interval } from 'rxjs';
 })
 export class StartTestComponent implements OnInit {
 
+  count:number=0
   currentId:number=0;
   optionArray:any[]=[];
   questionArray:any[]=[];
     remainingTime:number=10;
     retrievedData:any
     submitTestObj:any={
-      
+
         assignedTestId: 0,
         userId: 0,
         testId: 0,
@@ -33,21 +34,21 @@ export class StartTestComponent implements OnInit {
       if(this.remainingTime != 0){
         this.remainingTime --;
       }
-     
+
     })
     this.activatedRouter.params.subscribe((res:any)=>{
       if(res.id){
-        
+
         this.currentId=res.id;
 
         this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/getAllQuestionByTestId?testId="+this.currentId).subscribe((res:any)=>{
           this.questionArray=res.data;
-          
+
         })
       }
     })
 
-   
+
   }
 
   ngOnInit(): void {
@@ -59,16 +60,29 @@ export class StartTestComponent implements OnInit {
     } else {
       this.retrievedData = 'No data found in local storage.';
     }
-      
+
+    document.addEventListener("visibilitychange", () => {
+      //let count =0
+      if (document.visibilityState === "visible") {
+        console.log("tab is active");
+      } else {
+        console.log("tab is inactive");
+        alert("not allow to change screen")
+        console.log("tab is inactive", this.count++);
+
+
+      }
+    });
+
   }
-  
+
 
  submit(){
- 
+
   this.submitTestObj.userId=this.retrievedData.userId;
   this.submitTestObj.testId=this.currentId;
-  
-  
+
+
   this.http.post("https://freeapi.miniprojectideas.com/api/OnlineTest/SubmitTest",this.submitTestObj).subscribe((res:any)=>{
     if(res.result){
       alert(res.message);

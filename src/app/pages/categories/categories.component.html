@@ -31,11 +31,15 @@
                                 <td>
 
                                     <div>
-                                        <select [(ngModel)]="cate.parentCategoryId" name="parent" class="form-control">
-                                            <option value="select Category">Select</option>
+                                        <!-- <select [(ngModel)]="cate.parentCategoryId" name="parent" class="form-control">
+
+                                          <option value="select Category">Select</option>
+
                                             <option [value]="list.categoryId" *ngFor="let list of parentCate">
                                                 {{list.categoryName}}</option>
-                                        </select>
+                                        </select> -->
+
+<p-dropdown [options]="parentCate" [(ngModel)]="cate.parentCategoryId" optionLabel="categoryName" optionValue="parentCategoryId"></p-dropdown>
                                     </div>
                                 </td>
                                 <td>

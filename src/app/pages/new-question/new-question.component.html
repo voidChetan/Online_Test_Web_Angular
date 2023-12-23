@@ -85,8 +85,8 @@
                   <select name="categoryId" class="form-control" [(ngModel)]="questionObj.categoryId">
 
 
-                    <option *ngFor="let items of  catagoryArray" [value]="items.categoryId">
-                      {{items.categoryName}}
+                    <option *ngFor="let cat of  catagoryArray" [value]="cat.categoryId">
+                      {{cat.categoryName}}
                     </option>
                     <!-- <option value=""[(ngModel)]="clientObj.clientName">{{clientObj.clientName}}</option> -->
                   </select>
