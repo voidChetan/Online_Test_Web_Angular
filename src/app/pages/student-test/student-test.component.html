@@ -12,18 +12,18 @@
                 <thead>
                   <tr>
                     <th>Test Name</th>
-                    <th>Test Description</th>
-                    <th>Test Duration</th>
+                    <th>Full Name</th>
+                    <th>Email </th>
                     <th>Start</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let testList of testArray">
                     <td>{{testList.testName}}</td>
-                    <td>{{testList.description}}</td>
-                    <td>{{testList.duration}}</td>
+                    <td>{{testList.fullName}}</td>
+                    <td>{{testList.emailid}}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-primary" (click)="startTest(testList.testId)">Start
+                      <button type="button" class="btn btn-outline-primary" (click)="startTest(testList.userId)">Start
                         Test</button>
                     </td>
 

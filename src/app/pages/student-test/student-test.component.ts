@@ -9,7 +9,17 @@ import { Router } from '@angular/router';
 })
 export class StudentTestComponent implements OnInit {
   testArray: any[] = [];
-  constructor(private http: HttpClient, private route: Router) {}
+
+  localObj:any;
+  parseObj:any;
+  constructor(private http: HttpClient, private route: Router) {
+    this.localObj=localStorage.getItem('LoggedUserData');
+    if(this.localObj!==null && this.localObj!==undefined){
+      this.parseObj=JSON.parse(this.localObj);
+    }else{
+      console.log("Not Found Data");
+    }
+  }
 
   ngOnInit(): void {
     this.getAllTest();
@@ -17,7 +27,7 @@ export class StudentTestComponent implements OnInit {
 
   getAllTest() {
     this.http
-      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllTest')
+      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllAssignedTestByUserId?userId='+this.parseObj.userId)
       .subscribe((res: any) => {
         this.testArray = res.data;
       });
