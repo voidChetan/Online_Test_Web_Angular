@@ -75,8 +75,7 @@ export class StartTestComponent implements OnInit {
   submit() {
     this.submitTestObj.userId = this.retrievedData.userId;
     this.submitTestObj.testId = this.currentId;
-
-
+    this.submitTestObj.assignedI=this.assignedId;
     this.http.post('https://freeapi.gerasim.in/api/OnlineTest/SubmitTest',this.submitTestObj).subscribe((res: any) => {
         if (res.result) {
           alert(res.message);
@@ -92,13 +91,13 @@ export class StartTestComponent implements OnInit {
 
     const obj={
       optionId : optId,
-      quetionId:  queId
+      questionId:  queId
     }
 
 
-    this.quizTestAnswerViews.questionId=obj.quetionId;
+    this.quizTestAnswerViews.questionId=obj.questionId;
 
-   this.quizTestAnswerViews.selectedOptionId=obj.quetionId;
+   this.quizTestAnswerViews.selectedOptionId=obj.optionId;
 
     this.submitTestObj.quizTestAnswerViews.push(obj)
 
