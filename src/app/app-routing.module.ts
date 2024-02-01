@@ -59,7 +59,7 @@ const routes: Routes = [
         component: StartTestComponent,
       },
       {
-        path: 'start-test/:id',
+        path: 'start-test/:aid/:tid',
         component: StartTestComponent,
       },
       {

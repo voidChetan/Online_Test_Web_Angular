@@ -11,6 +11,7 @@ import { interval } from 'rxjs';
 export class StartTestComponent implements OnInit {
   count: number = 0;
   currentId: number = 0;
+  assignedId:number=0;
   optionArray: any[] = [];
   questionArray: any[] = [];
   remainingTime: number = 10;
@@ -36,10 +37,13 @@ export class StartTestComponent implements OnInit {
       }
     });
     this.activatedRouter.params.subscribe((res: any) => {
-      if (res.id) {
-        this.currentId = res.id;
+      console.log(res)
+      if (res.aid && res.tid) {
 
-        this.http.get('https://freeapi.gerasim.in/api/OnlineTest/getAllQuestionByTestId?testId='+this.currentId).subscribe((res: any) => {
+        this.currentId = res.tid;
+        this.assignedId=res.aid
+
+        this.http.get('https://freeapi.gerasim.in/api/OnlineTest/GetAllQuestionsByAssignTestId?assignedTestId='+this.currentId).subscribe((res: any) => {
           this.questionArray = res.data;
           });
       }

@@ -33,7 +33,11 @@ export class StudentTestComponent implements OnInit {
       });
   }
 
-  startTest(id: number) {
-    this.route.navigate(['/start-test', id]);
+  startTest(assignid: number,testId:number) {
+
+    const aid= assignid;
+    const tid=testId
+
+    this.route.navigate(['/start-test', aid,tid]);
   }
 }
