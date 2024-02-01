@@ -68,7 +68,7 @@ export class StartTestComponent implements OnInit {
         console.log('tab is active');
       } else {
         console.log('tab is inactive');
-        alert('not allow to change screen');
+        //alert('not allow to change screen');
         console.log('tab is inactive', this.count++);
       }
     });
