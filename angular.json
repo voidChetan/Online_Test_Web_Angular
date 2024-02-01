@@ -73,6 +73,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4105
+          },
           "configurations": {
             "production": {
               "browserTarget": "online_test_website:build:production"

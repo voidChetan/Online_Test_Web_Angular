@@ -15,21 +15,20 @@ export class StartTestComponent implements OnInit {
   questionArray: any[] = [];
   remainingTime: number = 10;
   retrievedData: any;
+  selectedId:number=0
   submitTestObj: any = {
     assignedTestId: 0,
     userId: 0,
     testId: 0,
     quizTestAnswerViews: [],
   };
-  quizTestAnswerViewsObj: any = {
+  quizTestAnswerViews: any = {
     questionId: 0,
     selectedOptionId: 0,
   };
-  constructor(
-    private activatedRouter: ActivatedRoute,
-    private http: HttpClient,
-    private route: Router
-  ) {
+
+  sumbitQuestions:any[]=[];
+  constructor(private activatedRouter: ActivatedRoute,private http: HttpClient,private route: Router) {
     const timer = interval(1000);
     timer.subscribe((res) => {
       if (this.remainingTime != 0) {
@@ -40,13 +39,8 @@ export class StartTestComponent implements OnInit {
       if (res.id) {
         this.currentId = res.id;
 
-        this.http
-          .get(
-            'https://freeapi.gerasim.in/api/OnlineTest/getAllQuestionByTestId?testId=' +
-              this.currentId
-          )
-          .subscribe((res: any) => {
-            this.questionArray = res.data;
+        this.http.get('https://freeapi.gerasim.in/api/OnlineTest/getAllQuestionByTestId?testId='+this.currentId).subscribe((res: any) => {
+          this.questionArray = res.data;
           });
       }
     });
@@ -68,7 +62,7 @@ export class StartTestComponent implements OnInit {
         console.log('tab is active');
       } else {
         console.log('tab is inactive');
-        alert('not allow to change screen');
+        // alert('not allow to change screen');
         console.log('tab is inactive', this.count++);
       }
     });
@@ -78,18 +72,32 @@ export class StartTestComponent implements OnInit {
     this.submitTestObj.userId = this.retrievedData.userId;
     this.submitTestObj.testId = this.currentId;
 
-    this.http
-      .post(
-        'https://freeapi.gerasim.in/api/OnlineTest/SubmitTest',
-        this.submitTestObj
-      )
-      .subscribe((res: any) => {
+
+    this.http.post('https://freeapi.gerasim.in/api/OnlineTest/SubmitTest',this.submitTestObj).subscribe((res: any) => {
         if (res.result) {
           alert(res.message);
+          console.log(this.submitTestObj);
           this.route.navigateByUrl('student-Test');
         } else {
           alert(res.message);
         }
       });
+  }
+
+  changeOption(queId:number,optId:number){
+
+    const obj={
+      optionId : optId,
+      quetionId:  queId
+    }
+    
+  
+    this.quizTestAnswerViews.questionId=obj.quetionId;
+  
+   this.quizTestAnswerViews.selectedOptionId=obj.quetionId;
+   
+    this.submitTestObj.quizTestAnswerViews.push(obj)
+    
+
   }
 }
