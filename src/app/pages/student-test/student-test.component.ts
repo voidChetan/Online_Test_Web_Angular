@@ -5,27 +5,25 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-student-test',
   templateUrl: './student-test.component.html',
-  styleUrls: ['./student-test.component.css']
+  styleUrls: ['./student-test.component.css'],
 })
 export class StudentTestComponent implements OnInit {
-
-  testArray:any[]=[];
-  constructor(private http:HttpClient,private route:Router){
-
-  }
+  testArray: any[] = [];
+  constructor(private http: HttpClient, private route: Router) {}
 
   ngOnInit(): void {
     this.getAllTest();
   }
 
-  getAllTest(){
-    this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest").subscribe((res:any)=>{
-    this.testArray=res.data;
-    })
+  getAllTest() {
+    this.http
+      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
+      .subscribe((res: any) => {
+        this.testArray = res.data;
+      });
   }
 
-  startTest(id:number){
-    this.route.navigate(['/start-test',id])
+  startTest(id: number) {
+    this.route.navigate(['/start-test', id]);
   }
-
 }

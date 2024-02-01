@@ -15,8 +15,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo:'login',
-    pathMatch:'full'
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
   {
     path: 'login',
@@ -31,41 +31,41 @@ const routes: Routes = [
         component: UserComponent,
       },
       {
-        path:'new-test',
-        component:NewTestComponent
+        path: 'new-test',
+        component: NewTestComponent,
       },
       {
-        path:'new-question',
-        component:NewQuestionComponent
+        path: 'new-question',
+        component: NewQuestionComponent,
       },
       {
-        path:'category',
-        component:CategoriesComponent
+        path: 'category',
+        component: CategoriesComponent,
       },
       {
-        path:'assign-test',
-        component:AssignedTestComponent
+        path: 'assign-test',
+        component: AssignedTestComponent,
       },
       {
-        path:'add-Question',
-        component:QueInterviewComponent
+        path: 'add-Question',
+        component: QueInterviewComponent,
       },
       {
-        path:'student-Test',
-        component:StudentTestComponent
+        path: 'student-Test',
+        component: StudentTestComponent,
       },
       {
-        path:'start-test',
-        component:StartTestComponent
+        path: 'start-test',
+        component: StartTestComponent,
       },
       {
-        path:'start-test/:id',
-        component:StartTestComponent
+        path: 'start-test/:id',
+        component: StartTestComponent,
       },
       {
-        path:'profile',
-        component:ProfileComponent
-      }
+        path: 'profile',
+        component: ProfileComponent,
+      },
     ],
   },
 ];

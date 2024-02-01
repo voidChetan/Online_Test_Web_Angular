@@ -1,4 +1,4 @@
-<div class="row bg-light bg-gradient p-5 border-0 mt-5" >
+<div class="row bg-light bg-gradient p-5 border-0 mt-5">
   <div *ngIf="!addquestion" class="col-12">
     <div class="card">
       <div class="card-header bg-info">
@@ -36,11 +36,12 @@
 
               <td class="text-center">
 
-                <button class="btn  border-0 " (click)="onEdit(question)"
-                  (click)="addquestion= ! addquestion"><i class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i>
-             </button>
-                <button class="btn border-0 mx-2" (click)="onDelete(question.questionId)"><i class="fa-solid fa-trash-can fs-6" style="color: red;"></i>
-                  </button>
+                <button class="btn  border-0 " (click)="onEdit(question)" (click)="addquestion= ! addquestion"><i
+                    class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i>
+                </button>
+                <button class="btn border-0 mx-2" (click)="onDelete(question.questionId)"><i
+                    class="fa-solid fa-trash-can fs-6" style="color: red;"></i>
+                </button>
 
 
               </td>
@@ -74,7 +75,7 @@
 
                 <div class="col-12">
                   <label for="" class="text-secondary  fw-bold p-2">Name</label>
-                  <p-editor [(ngModel)]="questionObj.questionName"  name="questionName"></p-editor>
+                  <p-editor [(ngModel)]="questionObj.questionName" name="questionName"></p-editor>
                   <!-- <input type="text" name="questionName" [(ngModel)]="questionObj.questionName" class="form-control"
                     placeholder="questionName"> -->
                 </div>
@@ -115,11 +116,12 @@
 
                 <div class="col-6">
 
-                    <p-toast></p-toast>
-                    <button class="btn btn-outline-primary" *ngIf=" questionObj.questionId==0" (click)="onSave()"><i class="fa-solid fa-floppy-disk me-1" style="color: black;"></i>
+                  <p-toast></p-toast>
+                  <button class="btn btn-outline-primary" *ngIf=" questionObj.questionId==0" (click)="onSave()"><i
+                      class="fa-solid fa-floppy-disk me-1" style="color: black;"></i>
 
-                      Save
-                    </button>
+                    Save
+                  </button>
 
                   <!-- <button class="btn btn-sm btn-success" *ngIf=" questionObj.questionId==0" (click)="onSave()">
 

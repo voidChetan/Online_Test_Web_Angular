@@ -8,7 +8,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
-        <li class="nav-item" *ngIf="retrievedData.role == 'admin'" >
+        <li class="nav-item" *ngIf="retrievedData.role == 'admin'">
           <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="/user">User</a>
         </li>
         <li class="nav-item" *ngIf="retrievedData.role == 'admin'">
@@ -18,19 +18,20 @@
           <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="new-question">new-question</a>
         </li>
 
-        <li class="nav-item" *ngIf="retrievedData.role == 'admin'" >
-          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink ="category">Categories</a>
+        <li class="nav-item" *ngIf="retrievedData.role == 'admin'">
+          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="category">Categories</a>
         </li>
         <li class="nav-item" *ngIf="retrievedData.role == 'admin'">
-          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink ="assign-test">Assigned-Test</a>
+          <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink="assign-test">Assigned-Test</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link fw-semibold text-uppercase text-black  me-1" routerLink ="add-Question">Add-Question</a>
         </li> -->
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control"  type="search" placeholder="Search here.." name="serach" aria-label="Search" [(ngModel)]="enteredSerchValue" (ngModelChange)="onSerchChange($event)">
-        
+        <input class="form-control" type="search" placeholder="Search here.." name="serach" aria-label="Search"
+          [(ngModel)]="enteredSerchValue" (ngModelChange)="onSerchChange($event)">
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark content-hover" href="#" role="button" data-bs-toggle="dropdown"

@@ -35,9 +35,9 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     private userSrv: UserService,
-    private route:Router
+    private route: Router
   ) {
-    const id=localStorage.getItem("LoggedUserData");
+    const id = localStorage.getItem('LoggedUserData');
     // if(id != null ){
     //   this.route.navigateByUrl("user")
     // }
@@ -49,25 +49,36 @@ export class LoginComponent {
   onLogin() {
     if (this.isApiCallInProgress == false) {
       this.isApiCallInProgress = true;
-      this.http.post('https://freeapi.miniprojectideas.com/api/OnlineTest/Login',this.loginObj)
-        .subscribe((result: any) => {
-          
-          if (result.result) {
-            localStorage.setItem('LoggedUserData', JSON.stringify(result.data));
-            if(result.data.role == 'admin'){
-              this.route.navigateByUrl("user")
+      this.http
+        .post(
+          'https://freeapi.miniprojectideas.com/api/OnlineTest/Login',
+          this.loginObj
+        )
+        .subscribe(
+          (result: any) => {
+            if (result.result) {
+              localStorage.setItem(
+                'LoggedUserData',
+                JSON.stringify(result.data)
+              );
+              if (result.data.role == 'admin') {
+                this.route.navigateByUrl('user');
+              } else if (
+                result.data.role == 'student' ||
+                result.data.role == 'Student'
+              ) {
+                this.route.navigateByUrl('student-Test');
+              }
+              //this.router.navigateByUrl('user');
+            } else {
+              alert('Check email or password');
             }
-            else if(result.data.role == 'student' || result.data.role == 'Student'  ){
-              this.route.navigateByUrl("student-Test")
-            }
-            //this.router.navigateByUrl('user');
-          } else {
-            alert('Check email or password');
+            this.isApiCallInProgress = false;
+          },
+          (error) => {
+            alert('API Error');
           }
-          this.isApiCallInProgress = false;
-        },error=>{
-          alert('API Error')
-        });
+        );
     }
   }
   saveUser() {
@@ -80,8 +91,8 @@ export class LoginComponent {
       }
     });
   }
-  viewPassword(){
-    this.visible = !this.visible
-    this.changetype = !this.changetype
+  viewPassword() {
+    this.visible = !this.visible;
+    this.changetype = !this.changetype;
   }
 }

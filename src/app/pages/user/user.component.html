@@ -1,144 +1,148 @@
 <div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="card mt-2">
-                <div class="card-header bg-info text-white d-flex justify-content-between">
-                    <h4>Users</h4>
-                    <button type="button" class="btn border-0 text-dark" (click)="bulkData()"><i class="fa-solid fa-plus" style="color: white;"></i></button>
+  <div class="row">
+    <div class="col-12">
+      <div class="card mt-2">
+        <div class="card-header bg-info text-white d-flex justify-content-between">
+          <h4>Users</h4>
+          <button type="button" class="btn border-0 text-dark" (click)="bulkData()"><i class="fa-solid fa-plus"
+              style="color: white;"></i></button>
 
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr class="text-center">
-                                <th>Sr</th>
-                                <th>full </th>
-                                <th>Mobile No</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th style="width: 10%;">Gender</th>
-                                <th>College</th>
-                                <th>Stream</th>
-                                <th>Code</th>
-                                <th >role</th>
-                                <th>Actions</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let user of  filterUserArray ; let sr=index">
-                                <td>{{sr+1}}</td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="name" [(ngModel)]="user.fullName" placeholder="Full Name"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                      {{user.fullName}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="mobno" [(ngModel)]="user.mobileNo" placeholder="Conatct number"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.mobileNo}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="emailid" [(ngModel)]="user.emailid" placeholder="Enter Email"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.emailid}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="password" [(ngModel)]="user.password" placeholder="Enter password"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.password}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="radio" name="{{sr}}gender" value="Male" [(ngModel)]="user.gender"><span>Male</span><br>
-                                        <input type="radio" name="{{sr}}gender" value="Female" [(ngModel)]="user.gender"><span>Female</span>
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.gender}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="collegeName" [(ngModel)]="user.collegeName" placeholder="Enter college Name"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.collegeName}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="Stream" [(ngModel)]="user.stream" placeholder="Enter Stream"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.stream}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="registrationCode" [(ngModel)]="user.registrationCode" placeholder="Enter Code"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.registrationCode}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div *ngIf="user.isEdit">
-                                        <input type="text" name="role" [(ngModel)]="user.role" placeholder="Enter role"
-                                            class="form-control">
-                                    </div>
-                                    <div *ngIf="!user.isEdit">
-                                        {{user.role}}
-                                    </div>
-                                </td>
-
-                                <td>
-                                   <div class="d-flex">
-                                    <button type="button"  class="btn border-0"
-                                    (click)="edit(user)"><i class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i></button>
-
-                                    <button type="button" class="btn border-0"
-                                        (click)="delete(user.userId)"><i class="fa-solid fa-trash-can fs-6" style="color: red;"></i></button>
-                                   </div>
-
-
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-                <div class="card-footer bg-light">
-                    <div>
-                        <p-toast></p-toast>
-                        <!-- <button type="button" *ngIf="userObj.userId ==! 0" class="btn border-0 btn-outline-primary"
-                        (click)="update()">Update</button> -->
-                        <button type="button" *ngIf="userObj.userId == 0" class="btn btn-outline-primary"   (click)="save()"><i class="fa-solid fa-floppy-disk fs-6 me-1" style="color: black;"> </i>Save / Update</button>
-
-                    </div>
-                </div>
-            </div>
         </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr class="text-center">
+                  <th>Sr</th>
+                  <th>full </th>
+                  <th>Mobile No</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th style="width: 10%;">Gender</th>
+                  <th>College</th>
+                  <th>Stream</th>
+                  <th>Code</th>
+                  <th>role</th>
+                  <th>Actions</th>
 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of  filterUserArray ; let sr=index">
+                  <td>{{sr+1}}</td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="name" [(ngModel)]="user.fullName" placeholder="Full Name"
+                        class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.fullName}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="mobno" [(ngModel)]="user.mobileNo" placeholder="Conatct number"
+                        class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.mobileNo}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="emailid" [(ngModel)]="user.emailid" placeholder="Enter Email"
+                        class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.emailid}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="password" [(ngModel)]="user.password" placeholder="Enter password"
+                        class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.password}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="radio" name="{{sr}}gender" value="Male"
+                        [(ngModel)]="user.gender"><span>Male</span><br>
+                      <input type="radio" name="{{sr}}gender" value="Female"
+                        [(ngModel)]="user.gender"><span>Female</span>
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.gender}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="collegeName" [(ngModel)]="user.collegeName"
+                        placeholder="Enter college Name" class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.collegeName}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="Stream" [(ngModel)]="user.stream" placeholder="Enter Stream"
+                        class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.stream}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="registrationCode" [(ngModel)]="user.registrationCode"
+                        placeholder="Enter Code" class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.registrationCode}}
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="user.isEdit">
+                      <input type="text" name="role" [(ngModel)]="user.role" placeholder="Enter role"
+                        class="form-control">
+                    </div>
+                    <div *ngIf="!user.isEdit">
+                      {{user.role}}
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="d-flex">
+                      <button type="button" class="btn border-0" (click)="edit(user)"><i
+                          class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i></button>
+
+                      <button type="button" class="btn border-0" (click)="delete(user.userId)"><i
+                          class="fa-solid fa-trash-can fs-6" style="color: red;"></i></button>
+                    </div>
+
+
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer bg-light">
+          <div>
+            <p-toast></p-toast>
+            <!-- <button type="button" *ngIf="userObj.userId ==! 0" class="btn border-0 btn-outline-primary"
+                        (click)="update()">Update</button> -->
+            <button type="button" *ngIf="userObj.userId == 0" class="btn btn-outline-primary" (click)="save()"><i
+                class="fa-solid fa-floppy-disk fs-6 me-1" style="color: black;"> </i>Save / Update</button>
+
+          </div>
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>

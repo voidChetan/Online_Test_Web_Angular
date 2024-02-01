@@ -8,36 +8,37 @@ import { __param } from 'tslib';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-
 })
 export class UserComponent {
-
-  isEdit:boolean=false;
-  userObj:any={
+  isEdit: boolean = false;
+  userObj: any = {
     userId: 0,
-    emailid: "",
-    mobileNo: "",
-    password: "",
-    fullName: "",
-    gender: "",
-    registrationCode: "",
-    collegeName: "",
-    stream: "",
-    role: "",
+    emailid: '',
+    mobileNo: '',
+    password: '',
+    fullName: '',
+    gender: '',
+    registrationCode: '',
+    collegeName: '',
+    stream: '',
+    role: '',
+  };
+  filterUserArray: any[] = [];
 
+  userArray: any[] = [];
 
-  }
-  filterUserArray:any[]=[];
-
-  userArray:any[]=[];
-
-  constructor(private http: HttpClient,private searchSrv:SearchService,private msgSrv:MessageService) {
-
-
-    this.searchSrv.searchText.subscribe((res:any)=>{
-    debugger;
-      this.filterUserArray = this.searchSrv.getFilteredData(this.userArray,res)
-    })
+  constructor(
+    private http: HttpClient,
+    private searchSrv: SearchService,
+    private msgSrv: MessageService
+  ) {
+    this.searchSrv.searchText.subscribe((res: any) => {
+      debugger;
+      this.filterUserArray = this.searchSrv.getFilteredData(
+        this.userArray,
+        res
+      );
+    });
   }
 
   ngOnInit(): void {
@@ -45,9 +46,11 @@ export class UserComponent {
   }
 
   getAllUsers() {
-    this.http.get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllUsers').subscribe((res: any) => {
+    this.http
+      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllUsers')
+      .subscribe((res: any) => {
         this.userArray = res.data;
-        this.filterUserArray=res.data;
+        this.filterUserArray = res.data;
       });
   }
   bulkData() {
@@ -62,14 +65,23 @@ export class UserComponent {
       collegeName: '',
       stream: '',
       role: '',
-      isEdit:true
+      isEdit: true,
     };
     this.userArray.unshift(obj);
   }
   save() {
-    this.http.post('https://freeapi.miniprojectideas.com/api/OnlineTest/AddUpdateBulkUsers',this.userArray).subscribe((res: any) => {
+    this.http
+      .post(
+        'https://freeapi.miniprojectideas.com/api/OnlineTest/AddUpdateBulkUsers',
+        this.userArray
+      )
+      .subscribe((res: any) => {
         if (res.result) {
-        this.msgSrv.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+          this.msgSrv.add({
+            severity: 'success',
+            summary: 'Successfully',
+            detail: res.message,
+          });
           // alert(res.message);
           this.getAllUsers();
         } else {
@@ -78,17 +90,21 @@ export class UserComponent {
       });
   }
 
-  edit(user:any){
-    user.isEdit=true;
-
+  edit(user: any) {
+    user.isEdit = true;
   }
 
-  update(){}
+  update() {}
 
   delete(id: number) {
     const isConfirm = confirm('Are You Sure Want to Delete ?');
     if (isConfirm) {
-      this.http.get('https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteUserById?id='+id).subscribe((res: any) => {
+      this.http
+        .get(
+          'https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteUserById?id=' +
+            id
+        )
+        .subscribe((res: any) => {
           if (res.result) {
             alert(res.message);
             this.getAllUsers();
@@ -98,5 +114,4 @@ export class UserComponent {
         });
     }
   }
-
 }

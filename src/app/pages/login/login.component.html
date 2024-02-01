@@ -45,7 +45,8 @@
                         <input [type]="changetype?'password':'text'" class="form-control password" name="password"
                           #password="ngModel" required [(ngModel)]="loginObj.password" placeholder="Password"
                           style="width: 80%;">
-                        <span class="eyeicon mt-2" (click)="viewPassword()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
+                        <span class="eyeicon mt-2" (click)="viewPassword()"><i
+                            [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
                       </span>
                     </div>
                     <div class="row">

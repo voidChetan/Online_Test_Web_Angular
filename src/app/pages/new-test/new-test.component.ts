@@ -7,15 +7,12 @@ import { SearchService } from 'src/app/core/services/search/search.service';
   selector: 'app-new-test',
   templateUrl: './new-test.component.html',
   styleUrls: ['./new-test.component.css'],
-
 })
 export class NewTestComponent implements OnInit {
-
-
   categoryId: number = 0;
   questionId: number = 0;
 
-  displayAlltest:boolean=true;
+  displayAlltest: boolean = true;
   testObj: any = {
     testId: 0,
     testName: '',
@@ -31,28 +28,34 @@ export class NewTestComponent implements OnInit {
 
   TestArray: any[] = [];
   questionArray: any[] = [];
-  filteredTestArray:any[]=[];
+  filteredTestArray: any[] = [];
   categoryArray: any[] = [];
 
-  constructor(private http: HttpClient,private msgSrv:MessageService,private searchSrv:SearchService) {
-    this.searchSrv.searchText.subscribe((res:any)=>{
-      this.filteredTestArray=this.TestArray.filter((param:any)=>{
+  constructor(
+    private http: HttpClient,
+    private msgSrv: MessageService,
+    private searchSrv: SearchService
+  ) {
+    this.searchSrv.searchText.subscribe((res: any) => {
+      this.filteredTestArray = this.TestArray.filter((param: any) => {
         let search = res;
         let value = Object.values(param);
         let flag = false;
-        value.forEach((val:any) => {
-         if(val !== null && val !==undefined && val.toString().toLowerCase().indexOf(search) > -1){
-          flag =true;
-          return;
-         }
+        value.forEach((val: any) => {
+          if (
+            val !== null &&
+            val !== undefined &&
+            val.toString().toLowerCase().indexOf(search) > -1
+          ) {
+            flag = true;
+            return;
+          }
         });
-      if(flag){
-        return param;
-      }
-
+        if (flag) {
+          return param;
+        }
       });
-    })
-
+    });
   }
 
   ngOnInit(): void {
@@ -60,7 +63,7 @@ export class NewTestComponent implements OnInit {
     this.getAllCategory();
   }
 
-  reset(){
+  reset() {
     this.testObj = {
       testId: 0,
       testName: '',
@@ -80,7 +83,7 @@ export class NewTestComponent implements OnInit {
       .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
       .subscribe((res: any) => {
         this.TestArray = res.data;
-        this.filteredTestArray=res.data;
+        this.filteredTestArray = res.data;
       });
   }
 
@@ -116,21 +119,21 @@ export class NewTestComponent implements OnInit {
   }
 
   bulkAddData() {
-    this.quizQuestions.questionId=this.questionId;
-    const filter=this.questionArray.find(m=> m.questionId ==  this.quizQuestions.questionId)
+    this.quizQuestions.questionId = this.questionId;
+    const filter = this.questionArray.find(
+      (m) => m.questionId == this.quizQuestions.questionId
+    );
 
     const obj = JSON.stringify(filter);
     const parse = JSON.parse(obj);
-    const questionobj= {
+    const questionobj = {
       testQuestionId: 0,
       questionId: parse.questionId,
-      questionName:parse.questionName,
+      questionName: parse.questionName,
       testId: 0,
     };
 
     this.testObj.quizTestQuestions.push(questionobj);
-
-
   }
 
   save() {
@@ -141,29 +144,46 @@ export class NewTestComponent implements OnInit {
       )
       .subscribe((res: any) => {
         if (res.result) {
-        this.msgSrv.add({ severity: 'success', summary: 'Successfully', detail: res.message });
+          this.msgSrv.add({
+            severity: 'success',
+            summary: 'Successfully',
+            detail: res.message,
+          });
           this.reset();
           this.getAllTest();
         } else {
-          this.msgSrv.add({ severity: 'error', summary: 'Error', detail: res.message });
+          this.msgSrv.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: res.message,
+          });
           // alert(res.message);
         }
       });
   }
 
-   edit(id:number){
-    this.displayAlltest=false;
-    this.http.get("https://freeapi.miniprojectideas.com/api/OnlineTest/getTestByTestId?testId="+id).subscribe((res:any)=>{
-      this.testObj=res.data;
-      this.testObj.quizTestQuestions=res.data.quizTestQuestions;
-    })
+  edit(id: number) {
+    this.displayAlltest = false;
+    this.http
+      .get(
+        'https://freeapi.miniprojectideas.com/api/OnlineTest/getTestByTestId?testId=' +
+          id
+      )
+      .subscribe((res: any) => {
+        this.testObj = res.data;
+        this.testObj.quizTestQuestions = res.data.quizTestQuestions;
+      });
+  }
 
-   }
-
-   deletetest(id:number){
+  deletetest(id: number) {
     const isConfirm = confirm('Are You Sure Want to Delete ?');
     if (isConfirm) {
-      this.http.get('https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteTestByTestId?id='+id).subscribe((res: any) => {
+      this.http
+        .get(
+          'https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteTestByTestId?id=' +
+            id
+        )
+        .subscribe((res: any) => {
           if (res.result) {
             alert(res.message);
             this.getAllTest();
@@ -172,6 +192,5 @@ export class NewTestComponent implements OnInit {
           }
         });
     }
-
-   }
+  }
 }

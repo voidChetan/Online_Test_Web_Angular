@@ -15,14 +15,16 @@ export class CategoriesComponent implements OnInit {
     imageUrl: '',
   };
   categoryArray: any[] = [];
-  filterCatagoryArray:any[]=[];
+  filterCatagoryArray: any[] = [];
   parentCate: any[] = [];
 
-  constructor(private http: HttpClient,private serchSrv:SearchService) {
-    this.serchSrv.searchText.subscribe((res:any)=>{
-      this.filterCatagoryArray=  this.serchSrv.getFilteredData(this.categoryArray,res)
-      })
-
+  constructor(private http: HttpClient, private serchSrv: SearchService) {
+    this.serchSrv.searchText.subscribe((res: any) => {
+      this.filterCatagoryArray = this.serchSrv.getFilteredData(
+        this.categoryArray,
+        res
+      );
+    });
   }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class CategoriesComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.categoryArray = res.data;
-        this.filterCatagoryArray=res.data;
+        this.filterCatagoryArray = res.data;
         this.parentCate = res.data.filter((m: any) => m.parentCategoryId == 0);
       });
   }

@@ -21,17 +21,21 @@ export class ProfileComponent {
     stream: ' ',
     role: ' ',
   };
-  constructor(private http:HttpClient){
+  constructor(private http: HttpClient) {
     let storedData = localStorage.getItem('LoggedUserData');
-    console.log(storedData)
-
+    console.log(storedData);
   }
 
-  onUpdate(){
-    this.http.post("https://freeapi.miniprojectideas.com/api/OnlineTest/updateUser",this.profileObj).subscribe((res:any)=>{
-      if(res.result){
-        alert("Updated Profile")
-      }
-    })
+  onUpdate() {
+    this.http
+      .post(
+        'https://freeapi.miniprojectideas.com/api/OnlineTest/updateUser',
+        this.profileObj
+      )
+      .subscribe((res: any) => {
+        if (res.result) {
+          alert('Updated Profile');
+        }
+      });
   }
 }

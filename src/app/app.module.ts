@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import{ HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './pages/user/user.component';
 import { NewTestComponent } from './pages/new-test/new-test.component';
@@ -36,7 +36,6 @@ import { DropdownModule } from 'primeng/dropdown';
     StudentTestComponent,
     StartTestComponent,
     ProfileComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -47,11 +46,9 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     MessagesModule,
     BrowserAnimationsModule,
-    DropdownModule
-
-
+    DropdownModule,
   ],
-  providers: [ConfirmationService,MessageService],
-  bootstrap: [AppComponent]
+  providers: [ConfirmationService, MessageService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
