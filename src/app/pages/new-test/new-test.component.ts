@@ -80,7 +80,7 @@ export class NewTestComponent implements OnInit {
 
   getAllTest() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
+      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllTest')
       .subscribe((res: any) => {
         this.TestArray = res.data;
         this.filteredTestArray = res.data;
@@ -90,7 +90,7 @@ export class NewTestComponent implements OnInit {
   getAllQuestion() {
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllQuestions'
+        'https://freeapi.gerasim.in/api/OnlineTest/GetAllQuestions'
       )
       .subscribe((res: any) => {
         this.questionArray = res.data;
@@ -100,7 +100,7 @@ export class NewTestComponent implements OnInit {
   getAllCategory() {
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllCategories'
+        'https://freeapi.gerasim.in/api/OnlineTest/GetAllCategories'
       )
       .subscribe((res: any) => {
         this.categoryArray = res.data;
@@ -110,7 +110,7 @@ export class NewTestComponent implements OnInit {
   changeCategory() {
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/getAllQuestionByCategoryId?categoryId=' +
+        'https://freeapi.gerasim.in/api/OnlineTest/getAllQuestionByCategoryId?categoryId=' +
           this.categoryId
       )
       .subscribe((res: any) => {
@@ -139,7 +139,7 @@ export class NewTestComponent implements OnInit {
   save() {
     this.http
       .post(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/createNewTest',
+        'https://freeapi.gerasim.in/api/OnlineTest/createNewTest',
         this.testObj
       )
       .subscribe((res: any) => {
@@ -166,7 +166,7 @@ export class NewTestComponent implements OnInit {
     this.displayAlltest = false;
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/getTestByTestId?testId=' +
+        'https://freeapi.gerasim.in/api/OnlineTest/getTestByTestId?testId=' +
           id
       )
       .subscribe((res: any) => {
@@ -180,7 +180,7 @@ export class NewTestComponent implements OnInit {
     if (isConfirm) {
       this.http
         .get(
-          'https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteTestByTestId?id=' +
+          'https://freeapi.gerasim.in/api/OnlineTest/DeleteTestByTestId?id=' +
             id
         )
         .subscribe((res: any) => {

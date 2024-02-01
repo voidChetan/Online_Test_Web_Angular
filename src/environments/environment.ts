@@ -1,3 +1,3 @@
 export const environment = {
-    apiURL:"https://freeapi.miniprojectideas.com/api/OnlineTest/"
+    apiURL:"https://freeapi.gerasim.in/api/OnlineTest/"
 };

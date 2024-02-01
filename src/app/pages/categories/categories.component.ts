@@ -34,7 +34,7 @@ export class CategoriesComponent implements OnInit {
   getAllCategories() {
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllCategories'
+        'https://freeapi.gerasim.in/api/OnlineTest/GetAllCategories'
       )
       .subscribe((res: any) => {
         this.categoryArray = res.data;
@@ -54,7 +54,7 @@ export class CategoriesComponent implements OnInit {
   save() {
     this.http
       .post(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/AddBulkCategories',
+        'https://freeapi.gerasim.in/api/OnlineTest/AddBulkCategories',
         this.categoryArray
       )
       .subscribe((res: any) => {
@@ -72,7 +72,7 @@ export class CategoriesComponent implements OnInit {
     if (isConfirm) {
       this.http
         .delete(
-          'https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteCategoryById?categoryId=' +
+          'https://freeapi.gerasim.in/api/OnlineTest/DeleteCategoryById?categoryId=' +
             id
         )
         .subscribe((res: any) => {

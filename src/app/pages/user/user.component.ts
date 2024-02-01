@@ -47,7 +47,7 @@ export class UserComponent {
 
   getAllUsers() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllUsers')
+      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllUsers')
       .subscribe((res: any) => {
         this.userArray = res.data;
         this.filterUserArray = res.data;
@@ -72,7 +72,7 @@ export class UserComponent {
   save() {
     this.http
       .post(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/AddUpdateBulkUsers',
+        'https://freeapi.gerasim.in/api/OnlineTest/AddUpdateBulkUsers',
         this.userArray
       )
       .subscribe((res: any) => {
@@ -101,7 +101,7 @@ export class UserComponent {
     if (isConfirm) {
       this.http
         .get(
-          'https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteUserById?id=' +
+          'https://freeapi.gerasim.in/api/OnlineTest/DeleteUserById?id=' +
             id
         )
         .subscribe((res: any) => {

@@ -51,7 +51,7 @@ export class LoginComponent {
       this.isApiCallInProgress = true;
       this.http
         .post(
-          'https://freeapi.miniprojectideas.com/api/OnlineTest/Login',
+          'https://freeapi.gerasim.in/api/OnlineTest/Login',
           this.loginObj
         )
         .subscribe(

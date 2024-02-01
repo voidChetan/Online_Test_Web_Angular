@@ -17,7 +17,7 @@ export class StudentTestComponent implements OnInit {
 
   getAllTest() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
+      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllTest')
       .subscribe((res: any) => {
         this.testArray = res.data;
       });

@@ -29,7 +29,7 @@ export class ProfileComponent {
   onUpdate() {
     this.http
       .post(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/updateUser',
+        'https://freeapi.gerasim.in/api/OnlineTest/updateUser',
         this.profileObj
       )
       .subscribe((res: any) => {

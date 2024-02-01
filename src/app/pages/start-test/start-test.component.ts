@@ -42,7 +42,7 @@ export class StartTestComponent implements OnInit {
 
         this.http
           .get(
-            'https://freeapi.miniprojectideas.com/api/OnlineTest/getAllQuestionByTestId?testId=' +
+            'https://freeapi.gerasim.in/api/OnlineTest/getAllQuestionByTestId?testId=' +
               this.currentId
           )
           .subscribe((res: any) => {
@@ -80,7 +80,7 @@ export class StartTestComponent implements OnInit {
 
     this.http
       .post(
-        'https://freeapi.miniprojectideas.com/api/OnlineTest/SubmitTest',
+        'https://freeapi.gerasim.in/api/OnlineTest/SubmitTest',
         this.submitTestObj
       )
       .subscribe((res: any) => {

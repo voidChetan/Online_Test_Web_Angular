@@ -30,7 +30,7 @@ export class QueInterviewComponent implements OnInit {
   }
   getAllLanguage() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/Interview/GetAllLanguage')
+      .get('https://freeapi.gerasim.in/api/Interview/GetAllLanguage')
       .subscribe((res: any) => {
         this.languageArray = res.data;
       });
@@ -39,7 +39,7 @@ export class QueInterviewComponent implements OnInit {
   getALlTopic() {
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/Interview/GetLanguageTopic'
+        'https://freeapi.gerasim.in/api/Interview/GetLanguageTopic'
       )
       .subscribe((res: any) => {
         this.topicArray = res.data;
@@ -49,7 +49,7 @@ export class QueInterviewComponent implements OnInit {
   getTopic() {
     this.http
       .get(
-        'https://freeapi.miniprojectideas.com/api/Interview/GetLanguageTopicById?id=' +
+        'https://freeapi.gerasim.in/api/Interview/GetLanguageTopicById?id=' +
           this.languageId
       )
       .subscribe((res: any) => {
@@ -59,7 +59,7 @@ export class QueInterviewComponent implements OnInit {
   addLanguageQuestions(obj: any) {
     this.http
       .post(
-        'https://freeapi.miniprojectideas.com/api/Interview/addLanguageQuestion',
+        'https://freeapi.gerasim.in/api/Interview/addLanguageQuestion',
         obj
       )
       .subscribe((res: any) => {

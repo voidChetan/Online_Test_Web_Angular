@@ -37,14 +37,14 @@ export class AssignedTestComponent {
 
   getAllTest() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllTest')
+      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllTest')
       .subscribe((res: any) => {
         this.TestArray = res.data;
       });
   }
   getAllUsers() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllUsers')
+      .get('https://freeapi.gerasim.in/api/OnlineTest/GetAllUsers')
       .subscribe((res: any) => {
         this.userArray = res.data;
       });

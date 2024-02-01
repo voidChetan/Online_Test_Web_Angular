@@ -9,30 +9,30 @@ export class AssignedTestService {
 
   getAllAssignedTest() {
     return this.http.get(
-      'https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllAssignedTest'
+      'https://freeapi.gerasim.in/api/OnlineTest/GetAllAssignedTest'
     );
   }
   getAllAssignedTestByRegCode(id: number) {
     return this.http.get(
-      'https://freeapi.miniprojectideas.com/api/OnlineTest/GetAllAssignedTestByRegistrationCode?regCode=' +
+      'https://freeapi.gerasim.in/api/OnlineTest/GetAllAssignedTestByRegistrationCode?regCode=' +
         id
     );
   }
   assignedTest(obj: any) {
     return this.http.post(
-      'https://freeapi.miniprojectideas.com/api/OnlineTest/assignTest',
+      'https://freeapi.gerasim.in/api/OnlineTest/assignTest',
       obj
     );
   }
   bulkUpdateTest(arr: any) {
     return this.http.put(
-      'https://freeapi.miniprojectideas.com/api/OnlineTest/bulkUpdateAssignedTest',
+      'https://freeapi.gerasim.in/api/OnlineTest/bulkUpdateAssignedTest',
       arr
     );
   }
   deleteAssignedTestBytestId(id: number) {
     return this.http.get(
-      'https://freeapi.miniprojectideas.com/api/OnlineTest/DeleteAssignedTestByAssignTestId?assignedTestId=' +
+      'https://freeapi.gerasim.in/api/OnlineTest/DeleteAssignedTestByAssignTestId?assignedTestId=' +
         id
     );
   }
