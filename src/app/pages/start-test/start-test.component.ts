@@ -10,7 +10,7 @@ import { interval } from 'rxjs';
 })
 export class StartTestComponent implements OnInit {
   count: number = 0;
-  currentId: number = 0;
+  testId: number = 0;
   assignedId:number=0;
   optionArray: any[] = [];
   questionArray: any[] = [];
@@ -38,12 +38,13 @@ export class StartTestComponent implements OnInit {
     });
     this.activatedRouter.params.subscribe((res: any) => {
       console.log(res)
+
       if (res.aid && res.tid) {
+        this.assignedId=res.aid;
+        this.testId = res.tid;
 
-        this.currentId = res.tid;
-        this.assignedId=res.aid
 
-        this.http.get('https://freeapi.gerasim.in/api/OnlineTest/GetAllQuestionsByAssignTestId?assignedTestId='+this.currentId).subscribe((res: any) => {
+        this.http.get('https://freeapi.gerasim.in/api/OnlineTest/GetAllQuestionsByAssignTestId?assignedTestId='+this.assignedId).subscribe((res: any) => {
           this.questionArray = res.data;
           });
       }
@@ -74,10 +75,11 @@ export class StartTestComponent implements OnInit {
 
   submit() {
     this.submitTestObj.userId = this.retrievedData.userId;
-    this.submitTestObj.testId = this.currentId;
-    this.submitTestObj.assignedI=this.assignedId;
+    this.submitTestObj.testId = this.testId;
+    this.submitTestObj.assignedTestId=this.assignedId;
     this.http.post('https://freeapi.gerasim.in/api/OnlineTest/SubmitTest',this.submitTestObj).subscribe((res: any) => {
         if (res.result) {
+
           alert(res.message);
           console.log(this.submitTestObj);
           this.route.navigateByUrl('student-Test');
@@ -90,14 +92,14 @@ export class StartTestComponent implements OnInit {
   changeOption(queId:number,optId:number){
 
     const obj={
-      optionId : optId,
+      selectedOptionId : optId,
       questionId:  queId
     }
 
 
     this.quizTestAnswerViews.questionId=obj.questionId;
 
-   this.quizTestAnswerViews.selectedOptionId=obj.optionId;
+   this.quizTestAnswerViews.selectedOptionId=obj.selectedOptionId;
 
     this.submitTestObj.quizTestAnswerViews.push(obj)
 
