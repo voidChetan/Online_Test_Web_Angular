@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
 })
 export class StudentTestComponent implements OnInit {
   testArray: any[] = [];
-
+  isViewResult:boolean=false;
+  resultArray:any[]=[];
+   trueCount:number = 0;
+ falseCount:number = 0;
+ passingScore:number=100;
   localObj:any;
   parseObj:any;
   constructor(private http: HttpClient, private route: Router) {
@@ -39,5 +43,27 @@ export class StudentTestComponent implements OnInit {
     const tid=testId
 
     this.route.navigate(['/start-test', aid,tid]);
+  }
+
+  viewResult(id:number){
+    this.isViewResult=true
+    this.http.get("https://freeapi.gerasim.in/api/OnlineTest/GetTestResultByAssignedTestId?AssignedTestId="+id).subscribe((res:any)=>{
+     this.resultArray=res.data;
+     this.count();
+    })
+  }
+
+  count(){
+    this.resultArray.forEach(item => {
+      if (item.isCorrect === true) {
+        this.trueCount++;
+      } else {
+        this.falseCount++;
+      }
+    });
+  }
+
+  home(){
+    this.isViewResult=false;
   }
 }
