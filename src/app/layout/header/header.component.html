@@ -1,0 +1,16 @@
+<mat-toolbar color="info">
+    <a class="p-2 text-decoration-none text-white mt-2" (click)="menuToggled.emit(true)" mat-icon-button>
+      <mat-icon fontIcon="menu">menu</mat-icon>
+    </a>
+    <span class="title text-white fs-4 mt-1" routerLink="home">CodeFirst ERP</span>
+    <span class="spacer"></span>
+    <span class="welcome-text">Hello {{ user }}</span>
+    <a class="p-2 text-decoration-none text-white mt-2" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>person_pin</mat-icon>
+    </a>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { LayoutComponent } from './pages/layout/layout.component';
+// import { LayoutComponent } from './pages/layout/layout.component';
+
+
 import { UserComponent } from './pages/user/user.component';
 import { NewTestComponent } from './pages/new-test/new-test.component';
 import { NewQuestionComponent } from './pages/new-question/new-question.component';
@@ -11,6 +13,7 @@ import { QueInterviewComponent } from './pages/que-interview/que-interview.compo
 import { StudentTestComponent } from './pages/student-test/student-test.component';
 import { StartTestComponent } from './pages/start-test/start-test.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { LayoutComponent } from './layout/layout/layout.component';
 
 const routes: Routes = [
   {

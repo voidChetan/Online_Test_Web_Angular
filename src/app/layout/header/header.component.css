@@ -1,0 +1,15 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.welcome-text {
+  font-size: smaller;
+}
+
+.mat-toolbar{
+  background: rgb(243, 101, 49) !important;
+}
