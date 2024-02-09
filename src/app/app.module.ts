@@ -10,6 +10,8 @@ import { MessagesModule } from 'primeng/messages';
 import { DropdownModule } from 'primeng/dropdown';
 
 // Angular Material imports
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -17,9 +19,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button'
 import {MatListModule} from '@angular/material/list';
-
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { PaginatorModule } from 'primeng/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -75,8 +77,11 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MatExpansionModule,
     MatListModule,
     MatButtonModule,
-    
-    
+    MatPaginatorModule,
+    MatTableModule,
+    PaginatorModule,
+    TableModule,
+    ButtonModule
 
   ],
   providers: [ConfirmationService, MessageService],

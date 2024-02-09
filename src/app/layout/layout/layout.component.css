@@ -4,9 +4,10 @@
   height: 100%;
 }
 
-mat-drawer {
-  min-width: 300px;
+.mat-drawer {
+  min-width: 250px;
   max-width: 400px;
+  
 }
 
 .margin-left {
