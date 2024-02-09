@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="card-body">
-        <table class="table table-bordered table-striped table-hover">
+        <!-- <table class="table table-bordered table-striped table-hover">
           <thead class="table-active">
             <tr>
               <th>Sr No</th>
@@ -45,7 +45,53 @@
             </tr>
           </tbody>
 
-        </table>
+        </table> -->
+
+
+        <p-table [value]="filterQuestionArray" [paginator]="true" [rows]="10" [showJumpToPageDropdown]="true"
+              [showPageLinks]="false" styleClass="p-datatable-gridlines p-datatable-sm" [responsive]="true">
+              <ng-template pTemplate="header">
+                <tr class="button-cell">
+                  <th style="width: 3%;">Sr</th>
+
+                  <th pSortableColumn="questionName"> Question Name<p-sortIcon field="questionName"></p-sortIcon></th>
+
+
+                  <th>CodeSnipet Text</th>
+                  <th>IsMultple Answer</th>
+                  <th>IsCode Snipet</th>
+                  <th>Action</th>
+                  <!-- <th style="width: 10%;">Action</th> -->
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-item let-sr="rowIndex">
+                <tr class="button-cell">
+                  <td>{{sr+1}}</td>
+                  <td><span innerHTML="{{item.questionName }}"></span> </td>
+                  <td>{{item.codeSnipetText}}</td>
+                  <td>{{item.isMultpleAnswer}}</td>
+                  <td>{{item.isCodeSnipet}}</td>
+                  <!-- <td> {{item.deptHeadName }}</td> -->
+                  <td class="text-center">
+
+                    <button class="btn  border-0 " (click)="onEdit(item)" (click)="addquestion= ! addquestion"><i
+                        class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i>
+                    </button>
+                    <button class="btn border-0 mx-2" (click)="onDelete(item.questionId)"><i
+                        class="fa-solid fa-trash-can fs-6" style="color: red;"></i>
+                    </button>
+
+
+                  </td>
+                </tr>
+              </ng-template>
+              <!-- <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="9" class="text-center">No Record Found</td>
+                </tr>
+              </ng-template> -->
+            </p-table>
+
       </div>
 
 

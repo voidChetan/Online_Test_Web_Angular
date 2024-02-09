@@ -78,7 +78,7 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MatListModule,
     MatButtonModule,
 
-    TableModule
+    TableModule,
 
 
     MatPaginatorModule,
@@ -88,3 +88,4 @@ import { LayoutComponent } from './layout/layout/layout.component'
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 })
+export class AppModule { }
