@@ -1,49 +1,54 @@
 import { SearchService } from './../../core/services/search/search.service';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { __param } from 'tslib';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
-export class UserComponent {
-  isEdit: boolean = false;
-  userObj: any = {
-    userId: 0,
-    emailid: '',
-    mobileNo: '',
-    password: '',
-    fullName: '',
-    gender: '',
-    registrationCode: '',
-    collegeName: '',
-    stream: '',
-    role: '',
-  };
-  filterUserArray: any[] = [];
+export class UserComponent  implements OnInit {
 
-  userArray: any[] = [];
+ 
 
-  constructor(
-    private http: HttpClient,
-    private searchSrv: SearchService,
-    private msgSrv: MessageService
-  ) {
+   userArray: any[] = [];
+   
+   isEdit: boolean = false;
+   userObj: any = {
+     userId: 0,
+     emailid: '',
+     mobileNo: '',
+     password: '',
+     fullName: '',
+     gender: '',
+     registrationCode: '',
+     collegeName: '',
+     stream: '',
+     role: '',
+   };
+   filterUserArray: any[] = [];
+   
+
+  constructor(private http: HttpClient,private searchSrv: SearchService,private msgSrv: MessageService) {
     this.searchSrv.searchText.subscribe((res: any) => {
-      debugger;
-      this.filterUserArray = this.searchSrv.getFilteredData(
-        this.userArray,
-        res
-      );
+      this.filterUserArray = this.searchSrv.getFilteredData(this.userArray,res);
     });
   }
-
+  
   ngOnInit(): void {
     this.getAllUsers();
+    
+    
   }
+
+
+ 
+ 
 
   getAllUsers() {
     this.http
@@ -51,6 +56,8 @@ export class UserComponent {
       .subscribe((res: any) => {
         this.userArray = res.data;
         this.filterUserArray = res.data;
+      
+  
       });
   }
   bulkData() {
@@ -115,3 +122,4 @@ export class UserComponent {
     }
   }
 }
+
