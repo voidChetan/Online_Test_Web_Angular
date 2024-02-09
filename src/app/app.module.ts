@@ -17,7 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button'
 import {MatListModule} from '@angular/material/list';
-
+import { TableModule } from 'primeng/table';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -56,7 +56,7 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MenuItemComponent,
     PageHeaderComponent,
     SideNavbarComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -75,8 +75,8 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MatExpansionModule,
     MatListModule,
     MatButtonModule,
-    
-    
+    TableModule
+
 
   ],
   providers: [ConfirmationService, MessageService],

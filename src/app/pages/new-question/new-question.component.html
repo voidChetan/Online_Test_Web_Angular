@@ -20,16 +20,13 @@
               <th>CodeSnipet Text</th>
               <th>IsMultple Answer</th>
               <th>IsCode Snipet</th>
-
-
-
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let question of  filterQuestionArray; let sr=index">
               <td>{{sr+1}}</td>
-              <td>{{question.questionName}}</td>
+              <td><span innerHTML="{{question.questionName}}"></span> </td>
               <td>{{question.codeSnipetText}}</td>
               <td>{{question.isMultpleAnswer}}</td>
               <td>{{question.isCodeSnipet}}</td>
@@ -50,8 +47,15 @@
 
         </table>
       </div>
+
+
+
+
+
     </div>
   </div>
+
+
 
 
   <div *ngIf="addquestion" [ngClass]="addquestion|| option == true ? 'col-12' : 'col-12'">
