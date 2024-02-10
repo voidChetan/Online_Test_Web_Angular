@@ -1,13 +1,19 @@
 <div>
-    <app-header (menuToggled)="toggle()"></app-header>
+  
+
+
+  <app-header (menuToggled)="toggle()"></app-header>
 
     
   
     <mat-drawer-container scroll="smooth">
-      <mat-drawer mode="side" [opened]="opened">
+     
+      <mat-drawer mode="side" [opened]="opened ">
         <app-menu-item [menu]="menu"></app-menu-item>
       </mat-drawer>
-
+      
+      
+    
       <mat-drawer-content [class.margin-left]="opened">
         <router-outlet></router-outlet>
       </mat-drawer-content>
