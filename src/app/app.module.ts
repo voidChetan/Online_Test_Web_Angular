@@ -58,7 +58,7 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MenuItemComponent,
     PageHeaderComponent,
     SideNavbarComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -77,14 +77,15 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MatExpansionModule,
     MatListModule,
     MatButtonModule,
+
+    TableModule,
+
+
     MatPaginatorModule,
     MatTableModule,
-    PaginatorModule,
-    TableModule,
-    ButtonModule
 
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
