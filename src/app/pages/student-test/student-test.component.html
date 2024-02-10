@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!isViewResult">
+<div class="container pt-0" *ngIf="!isViewResult">
   <div class="row mt-5">
     <div class="col-12">
       <div class="card mt-5">
@@ -6,79 +6,66 @@
           <h4> Your Assigned Test </h4>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <table class="table table-bordered text-center">
-                <thead>
-                  <tr>
-                    <th>Test Name</th>
-                    <th>Full Name</th>
-                    <th>Email </th>
-                    <th>Test</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let testList of testArray">
-                    <td>{{testList.testName}}</td>
-                    <td>{{testList.fullName}}</td>
-                    <td>{{testList.emailid}}</td>
-                    <td>
-                      <div class="d-flex justify-content-center">
-                      <div *ngIf="!testList.isCompleted" >
-                        <button type="button" class="btn btn-outline-primary" (click)="startTest(testList.assignedTestId,testList.testId)">Start
-                          Test</button>
-                      </div>
-                       
-                      <div *ngIf="testList.isCompleted">
-                        <button type="button" class="btn btn-outline-success" (click)="viewResult(testList.assignedTestId)">View
-                          Result</button>
-                      </div>
+          <p-table [value]="testArray" [paginator]="true" [rows]="10" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" styleClass="p-datatable-gridlines p-datatable-sm" [responsive]="true">
+            <ng-template pTemplate="header">
+              <tr class="button-cell">
+              <th pSortableColumn="testName"> Test Name<p-sortIcon field="testName"></p-sortIcon></th>
+                <th>Full Name</th>
+                <th>Email </th>
+                <th>Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-testList let-sr="rowIndex">
+              <tr class="button-cell">
+                <td>{{testList.testName}}</td>
+                <td>{{testList.fullName}}</td>
+                <td>{{testList.emailid}}</td>
+                <td>
+                  <div class="d-flex justify-content-center">
+                    <div *ngIf="!testList.isCompleted">
+                      <button type="button" class="btn btn-outline-primary"
+                        (click)="startTest(testList.assignedTestId,testList.testId)">Start
+                        Test</button>
                     </div>
-                    </td>
-                    
 
-
-                  </tr>
-                </tbody>
-              </table>
-              <!-- <div class=" card border shadow border-1 p-2 m-2" *ngFor="let testList of testArray">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="m-0 p-0">{{testList.testName}}</h5>
-                                <button type="button" class="btn btn-outline-primary">Start Test</button>
-                                </div>
-                            </div> -->
-            </div>
-
-          </div>
+                    <div *ngIf="testList.isCompleted">
+                      <button type="button" class="btn btn-outline-success"
+                        (click)="viewResult(testList.assignedTestId)">View
+                        Result</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <div class="container-fluid" *ngIf="isViewResult">
   <section class="mt-5 pt-5 ">
-   <div class="row">
-    <div class="col-12">
-      <div>
-        <div class="text-center" >
-          <h4>Result</h4>
-         
-          <!-- <img *ngIf="trueCount < passingScore" src="https://cdn-icons-png.freepik.com/256/2889/2889529.png?ga=GA1.1.965147061.1706959087&semt=ais" alt="">
+    <div class="row">
+      <div class="col-12">
+        <div>
+          <div class="text-center">
+            <h4>Result</h4>
+
+            <!-- <img *ngIf="trueCount < passingScore" src="https://cdn-icons-png.freepik.com/256/2889/2889529.png?ga=GA1.1.965147061.1706959087&semt=ais" alt="">
           <img *ngIf="trueCount >= passingScore" src="https://cdn-icons-png.freepik.com/256/2699/2699050.png?ga=GA1.1.965147061.1706959087&semt=ais" alt=""> -->
-         
-           <p>Your Score :{{trueCount*100}} /{{resultArray.length *100}}</p>
-           <p>Passing Score : {{passingScore}}</p>
+
+            <p>Your Score :{{trueCount*100}} /{{resultArray.length *100}}</p>
+            <p>Passing Score : {{passingScore}}</p>
+          </div>
         </div>
       </div>
     </div>
-   </div>
-   <p class="text-muted">See Your Answer</p>
+    <p class="text-muted">See Your Answer</p>
     <div class="row">
       <div class="col-xl-12 col-md-12 mb-4">
         <div class="card my-3" *ngFor="let result of resultArray">
-          <div class="card-body" >
+          <div class="card-body">
             <div class="d-flex justify-content-between p-md-1">
               <div class="d-flex flex-row">
                 <div class="align-self-end">
@@ -88,23 +75,24 @@
                 </div>
               </div>
               <div class="align-self-center">
-                <h6 class=" mb-0 text-success fw-bold" *ngIf="result.isCorrect"><i class="fa-solid fa-circle-check mx-2" style="color: green;"></i>Correct </h6>
-                <h6 class=" mb-0 text-danger fw-bold" *ngIf="!result.isCorrect"><i class="fa-solid fa-circle-xmark mx-2" style="color: red;"></i>Incorrect</h6>
+                <h6 class=" mb-0 text-success fw-bold" *ngIf="result.isCorrect"><i class="fa-solid fa-circle-check mx-2"
+                    style="color: green;"></i>Correct </h6>
+                <h6 class=" mb-0 text-danger fw-bold" *ngIf="!result.isCorrect"><i class="fa-solid fa-circle-xmark mx-2"
+                    style="color: red;"></i>Incorrect</h6>
 
               </div>
             </div>
           </div>
-          
+
         </div>
-        
+
       </div>
-     
+
     </div>
-   
+
   </section>
   <div class="text-end mb-4">
     <button class="btn btn-dark text-white" (click)="home()">Go To Home Page</button>
   </div>
- 
-</div>
 
+</div>

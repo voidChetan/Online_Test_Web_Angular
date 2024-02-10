@@ -23,7 +23,7 @@ export class NewQuestionComponent {
     categoryId: 0,
     questionName: '',
     isMultpleAnswer: true,
-    isCodeSnipet: false,
+    isCodeSnipet: true,
     codeSnipetText: '',
     quizQuestionAnswers: [],
   };

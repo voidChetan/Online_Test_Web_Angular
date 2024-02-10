@@ -6,22 +6,22 @@
           <h4 class="">Categories</h4>
           <button type="button" class="btn border-0 text-dark" (click)="bulkData()"><i class="fa-solid fa-plus fs-5"
               style="color: black;"></i></button>
-
         </div>
         <div class="card-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr class="text-center">
-                <th>Sr</th>
-                <th>category name</th>
+          <p-table [value]="filterCatagoryArray" [paginator]="true" [rows]="10" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" styleClass="p-datatable-gridlines p-datatable-sm" [responsive]="true">
+            <ng-template pTemplate="header">
+              <tr class="button-cell">
+                <th style="width: 3%;">Sr</th>
+                <th pSortableColumn="categoryName"> Category Name<p-sortIcon field="categoryName"></p-sortIcon></th>
                 <th>Parent Category Name</th>
                 <th>Image URL</th>
                 <th style="width: 20%;">Image</th>
                 <th>Action</th>
               </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let cate of filterCatagoryArray ;let sr=index">
+            </ng-template>
+            <ng-template pTemplate="body" let-cate let-sr="rowIndex">
+              <tr class="button-cell">
                 <td>{{sr+1}}</td>
                 <td>
                   <div>
@@ -29,18 +29,12 @@
                   </div>
                 </td>
                 <td>
-
                   <div>
                     <select [(ngModel)]="cate.parentCategoryId" name="parent" class="form-control">
-
-                                          <option value="select Category">Select</option>
-
-                                            <option [value]="list.categoryId" *ngFor="let list of parentCate">
-                                                {{list.categoryName}}</option>
-                                        </select>
-
-                    <!-- <p-dropdown [options]="parentCate" [(ngModel)]="cate.parentCategoryId" optionLabel="categoryName"
-                      optionValue="parentCategoryId" [editable]="true"></p-dropdown> -->
+                      <option value="select Category">Select</option>
+                      <option [value]="list.categoryId" *ngFor="let list of parentCate">
+                        {{list.categoryName}}</option>
+                    </select>
                   </div>
                 </td>
                 <td>
@@ -54,23 +48,18 @@
                 <td>
                   <button type="button" class="btn border-0 " (click)="delete(cate.categoryId)"><i
                       class="fa-solid fa-trash-can fs-5" style="color: #f93434;"></i></button>
-
-
                 </td>
-
               </tr>
-            </tbody>
-          </table>
+            </ng-template>
+          </p-table>
         </div>
         <div class="card-footer bg-light text-center">
           <div>
             <button type="button" class="btn btn-outline-primary" (click)="save()"><i
                 class="fa-solid fa-floppy-disk me-2" style="color: black;"></i>Save</button>
-
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>

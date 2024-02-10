@@ -6,7 +6,6 @@
           <h4>Tests</h4>
           <button type="button" class="btn   border-0" (click)="displayAlltest =!displayAlltest"><i
               class="fa-solid fa-plus fs-5" style="color: white;"></i></button>
-
         </div>
         <div class="card-body">
           <div class="row">
@@ -131,18 +130,19 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <table class="table table-bordered ">
-                <thead>
-                  <tr>
-                    <th>Sr</th>
-                    <th>Test Name</th>
+              <p-table [value]="filteredTestArray" [paginator]="true" [rows]="10" [showJumpToPageDropdown]="true"
+                [showPageLinks]="false" styleClass="p-datatable-gridlines p-datatable-sm" [responsive]="true">
+                <ng-template pTemplate="header">
+                  <tr class="button-cell">
+                    <th style="width: 3%;">Sr</th>
+                    <th pSortableColumn="testName"> Test Name<p-sortIcon field="testName"></p-sortIcon></th>
                     <th>Test Description</th>
                     <th>Test Duration</th>
                     <th>Action</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let test of filteredTestArray; let sr=index">
+                </ng-template>
+                <ng-template pTemplate="body" let-test let-sr="rowIndex">
+                  <tr class="button-cell">
                     <td>{{sr+1}}</td>
                     <td> {{test.testName}}</td>
                     <td> {{test.description}}</td>
@@ -152,11 +152,9 @@
                           class="fa-solid fa-pen-to-square" style="color: #0b27f4;"></i></button>
                       <button type="button" class="btn border-0 text-dark" (click)="deletetest(test.testId)"><i
                           class="fa-solid fa-trash-can" style="color: red;"></i></button>
-
-                    </td>
                   </tr>
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             </div>
           </div>
         </div>

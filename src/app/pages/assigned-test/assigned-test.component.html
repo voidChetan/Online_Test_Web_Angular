@@ -2,35 +2,27 @@
   <div class="row pt-5">
     <div [ngClass]="isSidePannelOpen?'col-12':'col-12'">
       <div class="card">
-        <div class="card-header bg-secondary text-end ">
-
-          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#myModal">
+        <div class="card-header bg-secondary text-end "><button type="button" class="btn btn-primary me-2"
+            data-bs-toggle="modal" data-bs-target="#myModal">
             AssignTest
           </button>
-
           <button type="button" class="btn btn-warning me-2" (click)="bulkAssignTestData()"> Add Bulk</button>
-
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Sr No</th>
+          <p-table [value]="assignTestList" [paginator]="true" [rows]="10" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" styleClass="p-datatable-gridlines p-datatable-sm" [responsive]="true">
+            <ng-template pTemplate="header">
+              <tr class="button-cell">
+                <th style="width: 3%;">Sr</th>
                 <th>Email-Id</th>
-                <th>Full Name</th>
+                <th pSortableColumn="fullName"> Full Name<p-sortIcon field="fullName"></p-sortIcon></th>
                 <th>Test Name</th>
                 <th>Assigned Date</th>
-                <!-- <th>Completed Date</th> -->
-                <!-- <th>Completed</th> -->
-                <!-- <th>Started</th> -->
-                <!-- <th>Started Date</th> -->
-                <!-- <th>Correct Ans</th> -->
                 <th>Action</th>
-
               </tr>
-            </thead>
-            <tbody *ngIf="isLoader==false">
-              <tr *ngFor="let test of assignTestList;let sr=index">
+            </ng-template>
+            <ng-template pTemplate="body" let-test let-sr="rowIndex">
+              <tr class="button-cell">
                 <td>{{sr+1}}</td>
                 <td>
                   <div *ngIf="test.isEdit">
@@ -68,116 +60,31 @@
                     {{test.assignedDate|date:'dd-MM-yy'}}
                   </div>
                 </td>
-                <!-- <td>
-                  <div *ngIf="test.isEdit">
-                    <input type="date" name="completedeDate" [(ngModel)]="test.completedeDate"
-                      placeholder="completede Date" class="form-control">
-                  </div>
-                  <div *ngIf="!test.isEdit">
-                    {{test.completedeDatedate|date:'dd-MM-yy'}}
-                  </div>
-                </td> -->
-                <!-- <td>
-                  <div *ngIf="test.isEdit">
-                    <input type="radio" name="{{sr}}isCompleted" value="Yes" [(ngModel)]="test.isCompleted"><span
-                      class="ms-2">Yes</span><br>
-                    <input type="radio" name="{{sr}}isCompleted" value="No" [(ngModel)]="test.isCompleted"><span
-                      class="ms-2">No</span>
-
-                  </div>
-                  <div *ngIf="!test.isEdit">
-                    {{test.isCompleted}}
-                  </div>
-                </td> -->
-                <!-- <td>
-                  <div *ngIf="test.isEdit">
-                    <input type="radio" name="{{sr}}isStarted" value="Yes" [(ngModel)]="test.isStarted"><span
-                      class="ms-2">Yes</span><br>
-                    <input type="radio" name="{{sr}}isStarted" value="No" [(ngModel)]="test.isStarted"><span
-                      class="ms-2">No</span>
-
-
-                  </div>
-                  <div *ngIf="!test.isEdit">
-                    {{test.isStarted}}
-                  </div>
-                </td> -->
-                <!-- <td>
-                  <div *ngIf="test.isEdit">
-                    <input type="date" name="startedDate" [(ngModel)]="test.startedDate"
-                      placeholder="Enter started Date" class="form-control">
-                  </div>
-                  <div *ngIf="!test.isEdit">
-                    {{test.startedDate|date:'dd-MM-yy'}}
-                  </div>
-                </td> -->
-                <!-- <td> -->
-                  <!-- <div *ngIf="test.isEdit">
-                    <input type="text" name="totalCorrectAnswers" [(ngModel)]="test.totalCorrectAnswers"
-                      placeholder="Enter total Correct Answers" class="form-control">
-                  </div>
-                  <div *ngIf="!test.isEdit">
-                    {{test.totalCorrectAnswers}}
-                  </div>
-                </td> -->
                 <td class="d-flex">
                   <button class="btn border-0  ms-2 mt-2" (click)="onEdit(test)"><i
                       class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i> </button>
                   <button class="btn border-0 ms-2 mt-2" (click)="onDelete(test.userId)"><i
                       class="fa-solid fa-trash-can fs-6" style="color: red;"></i> </button>
-
-                </td>
-
-              </tr>
-            </tbody>
-            <tbody *ngIf="isLoader==true">
-              <tr>
-                <td colspan="6" class="text-center">
-                  <div class="spinner-grow text-muted"></div>
-                  <div class="spinner-grow text-primary"></div>
-                  <div class="spinner-grow text-success"></div>
-                  <div class="spinner-grow text-info"></div>
-                  <div class="spinner-grow text-warning"></div>
-                  <div class="spinner-grow text-danger"></div>
-                  <div class="spinner-grow text-secondary"></div>
-                  <div class="spinner-grow text-dark"></div>
-                  <div class="spinner-grow text-light"></div>
                 </td>
               </tr>
-            </tbody>
-          </table>
+            </ng-template>
+          </p-table>
         </div>
         <div class="card-footer bg-light">
-          <div>
-
-            <button type="button" class="btn btn-outline-primary" (click)="onSave()">Save / Update</button>
-
-          </div>
+          <div><button type="button" class="btn btn-outline-primary" (click)="onSave()">Save / Update</button> </div>
         </div>
       </div>
-
     </div>
-
-
-
-    <!-- Button to Open the Modal -->
-
-
-    <!-- The Modal -->
+    <!-- Button to Open the Modal --> <!-- The Modal -->
     <div class="modal assign-test" id="myModal">
       <div class="modal-dialog">
         <div class="modal-content">
-
-
           <div class="modal-header">
             <h4 class="modal-title">Assigned Test</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-
-
           <div class="modal-body">
             <div class="card-body">
-
               <div class="row">
                 <div class="col-6">
                   <label for=""> Registration Code</label>
@@ -195,8 +102,6 @@
               </div>
             </div>
           </div>
-
-
           <div class="modal-footer">
             <div class="row mt-3">
               <div class="col-6">
@@ -212,9 +117,6 @@
         </div>
 
       </div>
-    </div> -->
-
-
-
+    </div>
   </div>
 </div>
