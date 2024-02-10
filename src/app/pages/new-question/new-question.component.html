@@ -69,18 +69,19 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-6">
+          <div class="col-12">
             <form>
               <div class="row">
 
                 <div class="col-12">
-                  <label for="" class="text-secondary  fw-bold p-2">Name</label>
-                  <p-editor [(ngModel)]="questionObj.questionName" name="questionName"></p-editor>
+                  <label for="" class="text-secondary  fw-bold p-2">Enter Question Name</label>
+                  <p-editor  [(ngModel)]="questionObj.questionName" name="questionName"></p-editor>
                   <!-- <input type="text" name="questionName" [(ngModel)]="questionObj.questionName" class="form-control"
                     placeholder="questionName"> -->
                 </div>
+               
                 <div class="col-6">
-                  <label for="" class="text-secondary  fw-bold p-2">category Name</label>
+                  <label for="" class="text-secondary  fw-bold p-2">Select Language Category </label>
 
 
                   <select name="categoryId" class="form-control" [(ngModel)]="questionObj.categoryId">
@@ -92,12 +93,13 @@
                     <!-- <option value=""[(ngModel)]="clientObj.clientName">{{clientObj.clientName}}</option> -->
                   </select>
                 </div>
-                <div class="col-6">
+                <div class="col-6"></div>
+                <div class="col-12">
                   <label for="" class="text-secondary  fw-bold p-2">Multple Answer</label>
                   <input type="checkbox" [(ngModel)]="questionObj.isMultpleAnswer" name="isMultpleAnswer">
                 </div>
 
-                <div class="col-6 ">
+                <div class="col-12 ">
                   <label for="" class="text-secondary  fw-bold p-2">Code Snipet</label>
                   <input type="checkbox" [(ngModel)]="questionObj.isCodeSnipet" name="isCodeSnipet">
                 </div>
@@ -139,18 +141,16 @@
 
 
           </div>
-          <div class="col-7" *ngIf="option || questionObj.isMultpleAnswer">
+          <div class="col-10" *ngIf="option || questionObj.isMultpleAnswer">
+           
             <table class="table table-bordered table-striped table-hover">
               <thead class="table-active">
                 <tr>
-
-
                   <th> <input type="text" class="form-control" [(ngModel)]="optionObj.optionText"> </th>
-                  <th> <input type="checkbox" [(ngModel)]="optionObj.isCodeSnipet">Code Sinpet</th>
-                  <th> <input type="checkbox" [(ngModel)]="optionObj.isCorrect">Correct </th>
+                  <th> <input type="checkbox" class="mx-2" [(ngModel)]="optionObj.isCodeSnipet">Code Sinpet</th>
+                  <th> <input type="checkbox" class="mx-2" [(ngModel)]="optionObj.isCorrect">Correct </th>
 
 
-                  <th><button class=" btn btn-sm btn-danger" (click)="addQuize()">Add</button></th>
                 </tr>
               </thead>
               <tbody>
@@ -161,6 +161,12 @@
                 </tr>
               </tbody>
             </table>
+           
+          </div>
+          <div class="col-2">
+            <div>
+              <button class=" btn btn-sm btn-danger" (click)="addQuize()">Add</button>
+            </div>
           </div>
         </div>
       </div>

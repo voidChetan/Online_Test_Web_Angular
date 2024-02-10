@@ -22,8 +22,8 @@ export class NewQuestionComponent {
     questionId: 0,
     categoryId: 0,
     questionName: '',
-    isMultpleAnswer: false,
-    isCodeSnipet: true,
+    isMultpleAnswer: true,
+    isCodeSnipet: false,
     codeSnipetText: '',
     quizQuestionAnswers: [],
   };
@@ -74,31 +74,35 @@ export class NewQuestionComponent {
     const parseObj = JSON.parse(obj);
 
     this.questionObj.quizQuestionAnswers.push(parseObj);
+    this.optionObj = {
+      optionId: 0,
+      questionId: 0,
+      optionText: ' ',
+      isCodeSnipet: false,
+      isCorrect: false,
+    };
   }
 
   onSave() {
-    this.questionSer.newQuestion(this.questionObj).subscribe((res: any) => {
-      if (res.result) {
-        this.msgSer.add({
-          severity: 'success',
-          summary: 'Successfully',
-          detail: res.message,
-        });
-        // this.msgSer.add({ severity: 'success', summary: 'Successfully', detail: res.message });
-        // alert("question Added");
-      } else {
-        alert(res.message);
-      }
-    });
-    // this.questionSer.newQuestion(this.questionObj).subscribe((res:any)=>{
-    //   if(res.result){
-    //     alert("Question Added");
-    //     this.loadQuestion();
-    //   }
-    //   else{
-    //     alert(res.message);
-    //   }
-    // })
+    debugger;
+    const isMultple = this.questionObj.quizQuestionAnswers.filter(
+      (m: any) => m.isCorrect === true
+    );
+    if (isMultple.length > 1) {
+      this.msgSer.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Only one correct option should be selected',
+      });
+    } else {
+      this.questionSer.newQuestion(this.questionObj).subscribe((res: any) => {
+        if (res.result) {
+          alert('Added Questions');
+        } else {
+          alert('Error ');
+        }
+      });
+    }
   }
 
   onUpdate() {

@@ -20,11 +20,11 @@
                 <th>Full Name</th>
                 <th>Test Name</th>
                 <th>Assigned Date</th>
-                <th>Completed Date</th>
-                <th>Completed</th>
-                <th>Started</th>
-                <th>Started Date</th>
-                <th>Correct Ans</th>
+                <!-- <th>Completed Date</th> -->
+                <!-- <th>Completed</th> -->
+                <!-- <th>Started</th> -->
+                <!-- <th>Started Date</th> -->
+                <!-- <th>Correct Ans</th> -->
                 <th>Action</th>
 
               </tr>
@@ -68,7 +68,7 @@
                     {{test.assignedDate|date:'dd-MM-yy'}}
                   </div>
                 </td>
-                <td>
+                <!-- <td>
                   <div *ngIf="test.isEdit">
                     <input type="date" name="completedeDate" [(ngModel)]="test.completedeDate"
                       placeholder="completede Date" class="form-control">
@@ -76,8 +76,8 @@
                   <div *ngIf="!test.isEdit">
                     {{test.completedeDatedate|date:'dd-MM-yy'}}
                   </div>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   <div *ngIf="test.isEdit">
                     <input type="radio" name="{{sr}}isCompleted" value="Yes" [(ngModel)]="test.isCompleted"><span
                       class="ms-2">Yes</span><br>
@@ -88,8 +88,8 @@
                   <div *ngIf="!test.isEdit">
                     {{test.isCompleted}}
                   </div>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   <div *ngIf="test.isEdit">
                     <input type="radio" name="{{sr}}isStarted" value="Yes" [(ngModel)]="test.isStarted"><span
                       class="ms-2">Yes</span><br>
@@ -101,8 +101,8 @@
                   <div *ngIf="!test.isEdit">
                     {{test.isStarted}}
                   </div>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   <div *ngIf="test.isEdit">
                     <input type="date" name="startedDate" [(ngModel)]="test.startedDate"
                       placeholder="Enter started Date" class="form-control">
@@ -110,16 +110,16 @@
                   <div *ngIf="!test.isEdit">
                     {{test.startedDate|date:'dd-MM-yy'}}
                   </div>
-                </td>
-                <td>
-                  <div *ngIf="test.isEdit">
+                </td> -->
+                <!-- <td> -->
+                  <!-- <div *ngIf="test.isEdit">
                     <input type="text" name="totalCorrectAnswers" [(ngModel)]="test.totalCorrectAnswers"
                       placeholder="Enter total Correct Answers" class="form-control">
                   </div>
                   <div *ngIf="!test.isEdit">
                     {{test.totalCorrectAnswers}}
                   </div>
-                </td>
+                </td> -->
                 <td class="d-flex">
                   <button class="btn border-0  ms-2 mt-2" (click)="onEdit(test)"><i
                       class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i> </button>

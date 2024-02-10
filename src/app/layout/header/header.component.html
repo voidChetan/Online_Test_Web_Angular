@@ -4,13 +4,17 @@
     </a>
     <span class="title text-white fs-4 mt-1" routerLink="home">CodeFirst ERP</span>
     <span class="spacer"></span>
-    <span class="welcome-text">Hello {{ user }}</span>
-    <a class="p-2 text-decoration-none text-white mt-2" mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>person_pin</mat-icon>
+    <span class="welcome-text">Hello ,{{ retrievedData.fullName}} ({{retrievedData.role}})</span>
+    <a class="p-2 text-decoration-none text-white mt-2" mat-icon-button (click)="logout()" >
+      <!-- <mat-icon>person_pin</mat-icon> -->
+      <mat-icon>logout</mat-icon>
     </a>
-    <mat-menu #menu="matMenu">
+    
+
+    <!-- <mat-menu >
       <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
-    </mat-menu>
+    </mat-menu> -->
   </mat-toolbar>
