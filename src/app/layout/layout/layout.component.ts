@@ -10,10 +10,9 @@ import { Menu } from 'src/app/core/models/menu_item';
 })
 export class LayoutComponent {
   opened = true;
+  hideSHow :boolean= false;
 
-  toggle(): void {
-    this.opened = !this.opened;
-  }
+  
 
   menu: Menu = [
     {
@@ -119,7 +118,20 @@ export class LayoutComponent {
     //   color: '#ff7f0e',
     // }
   ];
+  retrievedData:any
+  constructor(){
+    let storedData = localStorage.getItem('LoggedUserData');
 
+    // Parse the JSON data
+    if (storedData) {
+      this.retrievedData = JSON.parse(storedData);
+    } else {
+      this.retrievedData = 'No data found in local storage.';
+    }
+  }
+  toggle(): void {
+    this.opened = !this.opened;
+  }
  
 
 }
