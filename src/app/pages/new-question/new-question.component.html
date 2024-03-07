@@ -64,14 +64,8 @@
           <div class="col-12">
             <form>
               <div class="row">
-                <div class="col-12">
-                  <label for="" class="text-secondary  fw-bold p-2">Enter Question Name</label>
-                  <!-- <p-editor [(ngModel)]="questionObj.questionName" name="questionName"></p-editor> -->
-                  <input type="text" name="questionName" [(ngModel)]="questionObj.questionName" class="form-control"
-                    placeholder="Name">
-                </div>
-                <div class="col-6">
-                  <label for="" class="text-secondary  fw-bold p-2">Select Language Category </label>
+                <div class="col-4">
+                  <label for="" class="text-secondary  fw-bold p-2">Select  Category </label>
                   <select name="categoryId" class="form-control" [(ngModel)]="questionObj.categoryId">
                     <option *ngFor="let cat of  catagoryArray" [value]="cat.categoryId">
                       {{cat.categoryName}}
@@ -79,6 +73,15 @@
                     <!-- <option value=""[(ngModel)]="clientObj.clientName">{{clientObj.clientName}}</option> -->
                   </select>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <label for="" class="text-secondary  fw-bold p-2">Enter Question Name</label>
+                  <!-- <p-editor [(ngModel)]="questionObj.questionName" name="questionName"></p-editor> -->
+                  <input type="text" name="questionName" [(ngModel)]="questionObj.questionName" class="form-control"
+                    placeholder="Name">
+                </div>
+               
                 <div class="col-6"></div>
                 <div class="col-6">
                   <label for="" class="text-secondary  fw-bold p-2">Multple Answer</label>

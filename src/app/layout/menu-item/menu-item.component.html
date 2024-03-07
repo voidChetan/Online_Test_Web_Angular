@@ -7,7 +7,7 @@
           [routerLink]="item.link"
          >
         
-          <div class="d-flex" style="padding: 10px 24px;">
+          <div class="d-flex" style="padding: 10px 10px;">
             <mat-icon class="me-2" [style.color]="item.color" mat-list-icon>
               {{ item.icon }}
             </mat-icon>
@@ -20,7 +20,7 @@
       <ng-container *ngIf="item.subMenu?.length ?? 0  > 0">
         <mat-expansion-panel [expanded]="item.expanded">
           <mat-expansion-panel-header>
-            <mat-panel-title class="d-flex align-items-center" style="padding: 10px 24px;">
+            <mat-panel-title class="d-flex align-items-center" style="padding: 10px 10px;">
               <mat-icon [style.color]="item.color" mat-list-icon>
                 {{ item.icon }}
               </mat-icon>

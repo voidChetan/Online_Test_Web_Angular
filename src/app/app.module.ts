@@ -31,7 +31,7 @@ import { NewTestComponent } from './pages/new-test/new-test.component';
 import { NewQuestionComponent } from './pages/new-question/new-question.component';
 // import { LayoutComponent } from './pages/layout/layout.component';
 import { AssignedTestComponent } from './pages/assigned-test/assigned-test.component';
-import { QueInterviewComponent } from './pages/que-interview/que-interview.component';
+import { QueInterviewComponent } from './pages/interviewQuestions/que-interview/que-interview.component';
 import { StudentTestComponent } from './pages/student-test/student-test.component';
 import { StartTestComponent } from './pages/start-test/start-test.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -39,7 +39,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MenuItemComponent } from './layout/menu-item/menu-item.component';
 import { PageHeaderComponent } from './layout/page-header/page-header.component';
 import { SideNavbarComponent } from './layout/side-navbar/side-navbar.component';
-import { LayoutComponent } from './layout/layout/layout.component'
+import { LayoutComponent } from './layout/layout/layout.component';
+import { InterviewQuestionListComponent } from './pages/interviewQuestions/interview-question-list/interview-question-list.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { LayoutComponent } from './layout/layout/layout.component'
     MenuItemComponent,
     PageHeaderComponent,
     SideNavbarComponent,
+    InterviewQuestionListComponent,
 
   ],
   imports: [

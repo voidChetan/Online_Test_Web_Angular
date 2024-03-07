@@ -12,7 +12,7 @@ export class QueInterviewComponent implements OnInit {
 
   addQue: any = {
     questionId: 0,
-    languageTopicId: 0,
+    languageTopicId: '',
     question: '',
     answer: '',
     isPhotos: true,
@@ -65,6 +65,16 @@ export class QueInterviewComponent implements OnInit {
       .subscribe((res: any) => {
         if (res.result) {
           alert('Added successdully....');
+          this.addQue  = {
+            questionId: 0,
+            languageTopicId: 0,
+            question: '',
+            answer: '',
+            isPhotos: true,
+            createdDate: '',
+            isDelete: true,
+            orderNo: 0,
+          };
         } else {
           alert('Error...');
         }

@@ -84,7 +84,25 @@ export class LayoutComponent {
         // },
       ],
     },
-   
+    {
+      title: 'Interview',
+      icon: 'account_circle',
+      color: '#ff7f0e',
+      subMenu: [
+        {
+          title: 'New Question',
+          icon: 'money',
+          link: '/add-interview-Question',
+          color: '#ff7f0e',
+        },
+        {
+          title: 'Question List',
+          icon: 'people',
+          color: '#ff7f0e',
+          link: '/interview-Question-list',
+        },
+      ],
+    },
    
    
     {

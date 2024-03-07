@@ -1,0 +1,65 @@
+<div class="card">
+    <div class="card-header bg-info">
+      <div class="row">
+        <div class="col-md-6 text-white fw-bold fs-4">Question</div>
+        <div class="col-md-6 text-end">
+          <button type="button" class="btn  btn-dark  border-0" routerLink="/add-interview-Question">
+            <i class="fa-solid fa-plus" style="color: white;"></i>Add
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row pb-3">
+        <div class="col-4">
+          <label for="">Languages</label>
+          <select [(ngModel)]="languageId" name="language" class="form-control" (change)="getTopic()">
+            <option value="">Select Language</option>
+            <option [value]="list.languageId" *ngFor="let list of languageArray">
+              {{list.language}}</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="">Topics</label>
+          <select [(ngModel)]="topicId" name="topic" class="form-control">
+            <option value="">Select Topics</option>
+            <option [value]="list.languageTopicId" *ngFor="let list of topicArray">
+              {{list.topicName}}</option>
+          </select>
+        </div>
+        <div class="col-4 pt-4">
+          <button type="button" class="btn btn-warning border-0 btn-sm" (click)="onSearch()">
+            Search
+          </button>
+          </div>
+      </div>
+      <p-table [value]="questionList" [paginator]="true" [rows]="10" [showJumpToPageDropdown]="true"
+        [showPageLinks]="false" styleClass="p-datatable-gridlines p-datatable-sm" [responsive]="true">
+        <ng-template pTemplate="header">
+          <tr class="button-cell">
+            <th style="width: 3%;">Sr</th>
+            <th pSortableColumn="questionName"> Language<p-sortIcon field="questionName"></p-sortIcon></th>
+            <th>Topic</th>
+            <th>Question</th> 
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-sr="rowIndex">
+          <tr class="button-cell">
+            <td>{{sr+1}}</td>
+            <td>{{item.language}} </td>
+            <td>{{item.topicName}}</td>
+            <td>{{item.question}}</td> 
+            <td class="text-center">
+              <button class="btn  border-0 "  ><i
+                  class="fa-solid fa-pen-to-square fs-6" style="color: blue;"></i>
+              </button>
+              <button class="btn border-0 mx-2" ><i
+                  class="fa-solid fa-trash-can fs-6" style="color: red;"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
