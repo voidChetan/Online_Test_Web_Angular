@@ -52,6 +52,7 @@ export class QueInterviewComponent implements OnInit {
       .get('https://freeapi.gerasim.in/api/Interview/GetQuestionbyquestionid?id='+this.editQuestionId)
       .subscribe((res: any) => {
         this.addQue = res.data;
+        this.addQue.tags = res.data.tags.split(',');
         this.languageId = this.addQue.languageId;
         this.http.get('https://freeapi.gerasim.in/api/Interview/GetLanguageTopicById?id=' +
         this.languageId
@@ -83,6 +84,7 @@ export class QueInterviewComponent implements OnInit {
       });
   }
   addLanguageQuestions(obj: any) { 
+    obj.tags = obj.tags.toString();
     this.http.post('https://freeapi.gerasim.in/api/Interview/addLanguageQuestion',obj)
       .subscribe((res: any) => {
         if (res.result) {
@@ -96,6 +98,7 @@ export class QueInterviewComponent implements OnInit {
             createdDate: '',
             isDelete: true,
             orderNo: 0,
+            tags: ''
           };
         } else {
           alert('Error...');
