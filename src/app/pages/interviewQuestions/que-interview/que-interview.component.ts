@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-que-interview',
@@ -19,20 +20,45 @@ export class QueInterviewComponent implements OnInit {
     createdDate: '',
     isDelete: true,
     orderNo: 0,
+    tags: ''
   };
   languageArray: any[] = [];
   topicArray: any[] = [];
+  editQuestionId: number = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe((res:any)=>{
+      if(res.id) {
+        this.editQuestionId =  res.id;
+        this.GetQuestionbyquestionid();
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.getAllLanguage();
   }
+
+  
   getAllLanguage() {
     this.http
       .get('https://freeapi.gerasim.in/api/Interview/GetAllLanguage')
       .subscribe((res: any) => {
         this.languageArray = res.data;
+      });
+  }
+  GetQuestionbyquestionid() {
+    this.http
+      .get('https://freeapi.gerasim.in/api/Interview/GetQuestionbyquestionid?id='+this.editQuestionId)
+      .subscribe((res: any) => {
+        this.addQue = res.data;
+        this.languageId = this.addQue.languageId;
+        this.http.get('https://freeapi.gerasim.in/api/Interview/GetLanguageTopicById?id=' +
+        this.languageId
+        )
+        .subscribe((res: any) => {
+          this.topicArray = res.data;
+        });
       });
   }
 
@@ -56,12 +82,8 @@ export class QueInterviewComponent implements OnInit {
         this.topicArray = res.data;
       });
   }
-  addLanguageQuestions(obj: any) {
-    this.http
-      .post(
-        'https://freeapi.gerasim.in/api/Interview/addLanguageQuestion',
-        obj
-      )
+  addLanguageQuestions(obj: any) { 
+    this.http.post('https://freeapi.gerasim.in/api/Interview/addLanguageQuestion',obj)
       .subscribe((res: any) => {
         if (res.result) {
           alert('Added successdully....');

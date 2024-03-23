@@ -55,6 +55,10 @@ const routes: Routes = [
         component: InterviewQuestionListComponent,
       },
       {
+        path: 'add-interview-Question/:id',
+        component: QueInterviewComponent,
+      },
+      {
         path: 'add-interview-Question',
         component: QueInterviewComponent,
       },

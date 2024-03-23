@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-interview-question-list',
@@ -12,11 +13,15 @@ export class InterviewQuestionListComponent {
   topicId: string = '';
   languageArray: any[] = [];
   topicArray: any[] = [];
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   ngOnInit(): void {
     this.getAllQuestions();
     this.getAllLanguages();
+  }
+  
+  onedit(item:any ) {
+    this.router.navigate(['/add-interview-Question',item.questionId]) 
   }
   getAllQuestions() {
     this.http

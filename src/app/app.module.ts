@@ -8,7 +8,7 @@ import { EditorModule } from 'primeng/editor';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { ChipsModule } from 'primeng/chips';
 // Angular Material imports
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -40,7 +40,8 @@ import { MenuItemComponent } from './layout/menu-item/menu-item.component';
 import { PageHeaderComponent } from './layout/page-header/page-header.component';
 import { SideNavbarComponent } from './layout/side-navbar/side-navbar.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { InterviewQuestionListComponent } from './pages/interviewQuestions/interview-question-list/interview-question-list.component'
+import { InterviewQuestionListComponent } from './pages/interviewQuestions/interview-question-list/interview-question-list.component';
+import { LanguageTopicComponent } from './pages/interviewQuestions/language-topic/language-topic.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,7 @@ import { InterviewQuestionListComponent } from './pages/interviewQuestions/inter
     PageHeaderComponent,
     SideNavbarComponent,
     InterviewQuestionListComponent,
+    LanguageTopicComponent,
 
   ],
   imports: [
@@ -79,7 +81,7 @@ import { InterviewQuestionListComponent } from './pages/interviewQuestions/inter
     MatExpansionModule,
     MatListModule,
     MatButtonModule,
-
+    ChipsModule,
     TableModule,
 
 

@@ -2,7 +2,7 @@
   <div class="row pt-2">
     <form>
       <div class="row ">
-        <div class="col-6 ">
+        <div class="col-4">
           <label for="">Languages :</label>
           <select [(ngModel)]="languageId" name="language" class="form-control" (change)="getTopic()">
             <option value="">Select</option>
@@ -10,13 +10,17 @@
               {{list.language}}</option>
           </select>
         </div>
-        <div class="col-6">
+        <div class="col-4">
           <label for="">Topics :</label>
           <select [(ngModel)]="addQue.languageTopicId" name="topic" class="form-control">
             <option value="">Select</option>
             <option [value]="list.languageTopicId" *ngFor="let list of topicArray">
               {{list.topicName}}</option>
           </select>
+        </div>
+        <div class="col-4">
+          <label for="">Tags :</label>
+          <p-chips [(ngModel)]="addQue.tags" separator=","  placeholder="Hint:Basic, Advance, tricky,Angular, React"></p-chips>
         </div>
         <div class="col-12 py-3">
           <label for="">Add Your Questions :</label>
@@ -29,7 +33,7 @@
         </div>
         <div class="col-12">
           <div class="my-2">
-            <button type="button" class="btn btn-primary" (click)="addLanguageQuestions(addQue)">Save</button>
+            <button type="button" class="btn btn-primary" (click)="addLanguageQuestions(addQue)"> {{addQue.questionId ==0 ?'Save':'update'}}</button>
           </div>
         </div>
       </div>
