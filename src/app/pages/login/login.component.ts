@@ -72,11 +72,13 @@ export class LoginComponent {
               //this.router.navigateByUrl('user');
             } else {
               alert('Check email or password');
+              this.route.navigateByUrl('user');
             }
             this.isApiCallInProgress = false;
           },
           (error) => {
             alert('API Error');
+            this.route.navigateByUrl('user');
           }
         );
     }

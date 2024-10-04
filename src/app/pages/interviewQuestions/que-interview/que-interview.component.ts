@@ -84,7 +84,7 @@ export class QueInterviewComponent implements OnInit {
       });
   }
   addLanguageQuestions(obj: any) { 
-    obj.tags = obj.tags.toString();
+    obj.tags = "";
     this.http.post('https://freeapi.gerasim.in/api/Interview/addLanguageQuestion',obj)
       .subscribe((res: any) => {
         if (res.result) {
